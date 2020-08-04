@@ -27,8 +27,7 @@
 
             <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".ui.main.MainActivity">
+                android:layout_height="match_parent">
 
                 <com.google.android.material.appbar.AppBarLayout
                     android:layout_width="match_parent"
@@ -57,7 +56,6 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:fitsSystemWindows="true"
-                app:headerLayout="@layout/nav_header_main"
                 app:menu="@menu/activity_main_drawer" />
 
         </androidx.drawerlayout.widget.DrawerLayout>

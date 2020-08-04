@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">apay-store-app</string>
+    <string name="app_name">apay-user-app</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -10,4 +10,39 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+    <string name="todo">todo</string>
+
+    <string name="main_card_title_string">페이머니</string>
+    <string name="payment_button_string">결제</string>
+    <string name="main_balance_title_text">잔액</string>
+
+    <string name="confirm">확인</string>
+    <string name="pay_complete">PAY_COMPLETE</string>
+    <string name="payment_cancel">결제취소</string>
+    <string name="payment_cancel_requested">결제취소 요청중</string>
+
+    <string name="easypassword_text_01"><u>간편비밀번호를 잊어버리셨나요?</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="a_pay_register"><u>A-Pay 에 등록하지 않으셨나요?</u></string>
+
+    <string name="jointerms_text_01">서비스 이용약관 동의</string>
+    <string name="jointerms_text_02">아래의 내용에 모두 동의합니다</string>
+    <string name="jointerms_text_03">[필수]서비스 표준 이용 약관</string>
+    <string name="jointerms_text_04">[선택]서비스 표준 이용 약관</string>
+
+    <string name="telecom_prompt">통신사</string>
+    <string-array name="telecom_arrays">
+        <item>SKT</item>
+        <item>KT</item>
+        <item>LGT</item>
+    </string-array>
+    <string name="title_activity_card_use_detail">CardUseDetailActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>

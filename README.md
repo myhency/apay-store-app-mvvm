@@ -273,3 +273,24 @@ public class AppModule {
 }
 
 ```
+
+# SplashActivity 생성하기
+
+## 용도
+
+처음 사용자가 앱을 구동하였을 때 보이는 화면으로, 이미지나 로고 등으로 앱을 간단하게 표현할 수 있다. 또한 로그인 여부를 확인하여
+SplashActivity 이후의 Activity 를 결정할 수 있다. (LoginActivity OR MainActivity)
+
+## 개발
+
+### Activity 생성
+
+- `SplashActivity.java`
+
+### UI
+
+- `activity_splash.xml`
+
+### ViewModel
+
+- `SplashViewModel.java`

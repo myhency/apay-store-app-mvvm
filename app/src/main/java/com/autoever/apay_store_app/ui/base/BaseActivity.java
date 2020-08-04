@@ -1,6 +1,9 @@
 package com.autoever.apay_store_app.ui.base;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
@@ -44,5 +47,15 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
         mViewDataBinding.setVariable(getBindingVariable(), mViewModel);
         mViewDataBinding.executePendingBindings();
         mViewDataBinding.setLifecycleOwner(this);
+    }
+
+    public void hideKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        }
     }
 }
