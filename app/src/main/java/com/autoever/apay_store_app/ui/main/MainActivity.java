@@ -1,8 +1,13 @@
 package com.autoever.apay_store_app.ui.main;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.autoever.apay_store_app.BR;
@@ -10,6 +15,7 @@ import com.autoever.apay_store_app.R;
 import com.autoever.apay_store_app.ViewModelProviderFactory;
 import com.autoever.apay_store_app.databinding.ActivityMainBinding;
 import com.autoever.apay_store_app.ui.base.BaseActivity;
+import com.google.android.material.navigation.NavigationView;
 
 import javax.inject.Inject;
 
@@ -20,6 +26,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     private MainViewModel mMainViewModel;
     private ActivityMainBinding mActivityMainBinding;
+    private DrawerLayout mDrawer;
+    private NavigationView mNavigationView;
+    private Toolbar mToolbar;
+
+    public static Intent newIntent(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
+    }
 
     @Override
     public int getBindingVariable() {
@@ -41,5 +55,27 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivityMainBinding = getViewDataBinding();
+
+        setup();
+    }
+
+    private void setup() {
+        mDrawer = mActivityMainBinding.drawerLayout;
+        mToolbar = mActivityMainBinding.toolbar;
+        mNavigationView = mActivityMainBinding.navView;
+
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                mDrawer,
+                mToolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close
+        ) {
+
+        };
+
     }
 }

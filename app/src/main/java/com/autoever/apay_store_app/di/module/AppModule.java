@@ -22,16 +22,16 @@ public class AppModule {
         return application;
     }
 
-//    @Provides
-//    @Singleton
-//    DataManager provideDataManager(AppDataManager appDataManager) {
-//        return appDataManager;
-//    }
-//
-//    @Provides
-//    @Singleton
-//    RepoService provideRepoService(Retrofit retrofit) {
-//        return retrofit.create(RepoService.class);
-//    }
+    @Provides
+    @Singleton
+    DataManager provideDataManager(AppDataManager appDataManager) {
+        return appDataManager;
+    }
+
+    @Provides
+    @Singleton
+    RepoService provideRepoService(Retrofit retrofit) {
+        return retrofit.create(RepoService.class);
+    }
 
 }

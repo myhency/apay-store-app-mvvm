@@ -125,3 +125,151 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 ```
 
 # Retrofit 사용하기
+
+## Request / Response 에 사용할 Model 정의하기
+
+### login request
+
+```java
+public class LoginRequest {
+
+    @Expose
+    @SerializedName("loginId")
+    private String loginId;
+
+    @Expose
+    @SerializedName("password")
+    private String password;
+
+    public LoginRequest(String loginId, String password) {
+        this.loginId = loginId;
+        this.password = password;
+    }
+
+    public String getLoginId() {
+        return loginId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+}
+
+```
+
+### login response
+
+```java
+public class LoginResponse {
+
+    @Expose
+    @SerializedName("data")
+    private Login data;
+
+    public Login getData() { return data; }
+
+    public static class Login {
+
+        @Expose
+        @SerializedName("jwtToken")
+        private String jwtToken;
+
+        @Expose
+        @SerializedName("userId")
+        private int userId;
+
+        public String getJwtToken() {
+            return jwtToken;
+        }
+
+        public int getUserId() {
+            return userId;
+        }
+    }
+}
+
+```
+
+## RepoService 생성하기
+
+```java
+public interface RepoService {
+
+    @POST("user/login")
+    @Headers("No-Authentication: true")
+    Single<LoginResponse> doLoginCall(@Body LoginRequest loginRequest);
+}
+
+```
+
+## DataManager 생성하기
+
+```java
+public interface DataManager extends RepoService {
+
+    enum LoggedInMode {
+        LOGGED_IN_MODE_LOGGED_OUT(0),
+        LOGGED_IN_MODE_SERVER(3);
+
+        private final int mType;
+
+        LoggedInMode(int type) {
+            mType = type;
+        }
+
+        public int getType() {
+            return mType;
+        }
+    }
+}
+
+```
+
+## AppDataManager 생성하기
+
+```java
+@Singleton
+public class AppDataManager implements DataManager {
+
+    private final RepoService mRepoService;
+
+    @Inject
+    public AppDataManager(RepoService mRepoService) {
+        this.mRepoService = mRepoService;
+    }
+
+    @Override
+    public Single<LoginResponse> doLoginCall(LoginRequest loginRequest) {
+        return mRepoService.doLoginCall(loginRequest);
+    }
+}
+
+```
+
+# DataManager 주입받기
+
+## AppModule 에 DataManager 추가하기
+```java
+@Module
+public class AppModule {
+
+    @Provides
+    @Singleton
+    Context provideContext(Application application) {
+        return application;
+    }
+
+    @Provides
+    @Singleton
+    DataManager provideDataManager(AppDataManager appDataManager) {
+        return appDataManager;
+    }
+
+    @Provides
+    @Singleton
+    RepoService provideRepoService(Retrofit retrofit) {
+        return retrofit.create(RepoService.class);
+    }
+}
+
+```
