@@ -26,15 +26,15 @@ public class LoginResponse {
         private String jwtToken;
 
         @Expose
-        @SerializedName("userId")
-        private int userId;
+        @SerializedName("storeId")
+        private int storeId;
 
         public String getJwtToken() {
             return jwtToken;
         }
 
-        public int getUserId() {
-            return userId;
+        public int getStoreId() {
+            return storeId;
         }
     }
 }

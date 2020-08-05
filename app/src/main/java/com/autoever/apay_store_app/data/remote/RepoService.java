@@ -42,7 +42,7 @@ public interface RepoService {
     @POST("user/tokenSystem/1")
     Single<UserRegisterResponse> doUserRegisterCall(@Body UserRegisterRequest userRegisterRequest);
 
-    @POST("user/login")
+    @POST("store/login")
     @Headers("No-Authentication: true")
     Single<LoginResponse> doLoginCall(@Body LoginRequest loginRequest);
 
