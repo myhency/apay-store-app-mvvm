@@ -10,14 +10,11 @@ import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
+import dagger.Provides;
 import dagger.android.AndroidInjectionModule;
 
 @Singleton
-@Component(modules = {
-        AndroidInjectionModule.class,
-        AppModule.class,
-        ActivityBuilder.class
-})
+@Component(modules = {AndroidInjectionModule.class, AppModule.class, ActivityBuilder.class})
 public interface AppComponent {
 
     void inject(ApayStoreApp app);

@@ -64,7 +64,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_below="@+id/imageView_actSplash"
-            android:autoSizeMaxTextSize="14sp"
+            android:autoSizeMaxTextSize="18sp"
             android:autoSizeMinTextSize="10sp"
             android:autoSizeStepGranularity="1sp"
             android:autoSizeTextType="uniform"
@@ -79,7 +79,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/guideline2"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.34"
+            app:layout_constraintVertical_bias="0.36"
             app:layout_constraintWidth_default="percent"
             app:layout_constraintWidth_percent="0.3667" />
 
