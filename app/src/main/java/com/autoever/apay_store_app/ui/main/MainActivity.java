@@ -6,11 +6,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -20,21 +23,33 @@ import com.autoever.apay_store_app.ViewModelProviderFactory;
 import com.autoever.apay_store_app.databinding.ActivityMainBinding;
 import com.autoever.apay_store_app.databinding.NavHeaderMainBinding;
 import com.autoever.apay_store_app.ui.base.BaseActivity;
+import com.autoever.apay_store_app.ui.main.home.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
+
+import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
+
+public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements MainNavigator, HasSupportFragmentInjector {
 
     @Inject
     ViewModelProviderFactory factory;
+
+    @Inject
+    DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
 
     private MainViewModel mMainViewModel;
     private ActivityMainBinding mActivityMainBinding;
     private DrawerLayout mDrawer;
     private NavigationView mNavigationView;
     private Toolbar mToolbar;
+    private FragmentManager mFragmentManager;
 
+    @NotNull
     public static Intent newIntent(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         return intent;
@@ -65,12 +80,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     private void setup() {
+        this.mFragmentManager = getSupportFragmentManager();
         mDrawer = mActivityMainBinding.drawerLayout;
         mToolbar = mActivityMainBinding.toolbar;
         mNavigationView = mActivityMainBinding.navView;
 
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -93,7 +110,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         mDrawer.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
         setupNavMenu();
-
+        openHomeFragment();
     }
 
     private void setupNavMenu() {
@@ -112,4 +129,18 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
 
+    @Override
+    public void openHomeFragment() {
+        Log.d("debug", "openHomeFragment");
+        mFragmentManager
+                .beginTransaction()
+                .add(R.id.root_layout, HomeFragment.newInstance(), HomeFragment.TAG)
+                .addToBackStack(HomeFragment.TAG)
+                .commitAllowingStateLoss();
+    }
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return fragmentDispatchingAndroidInjector;
+    }
 }
