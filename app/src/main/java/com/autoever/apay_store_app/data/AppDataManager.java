@@ -15,6 +15,7 @@ import com.autoever.apay_store_app.data.model.api.LoginRequest;
 import com.autoever.apay_store_app.data.model.api.LoginResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentDoRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentDoResponse;
+import com.autoever.apay_store_app.data.model.api.PaymentHistoryResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentReadyRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentReadyResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundReadyRequest;
@@ -24,15 +25,12 @@ import com.autoever.apay_store_app.data.model.api.UserRegisterResponse;
 import com.autoever.apay_store_app.data.model.db.User;
 import com.autoever.apay_store_app.data.remote.ApiHelper;
 import com.autoever.apay_store_app.data.remote.RepoService;
-import com.autoever.apay_store_app.data.remote.RepoServiceInterceptor;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
-import retrofit2.Call;
-import retrofit2.http.Header;
 
 @Singleton
 public class AppDataManager implements DataManager {
@@ -181,5 +179,10 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<PaymentRefundReadyResponse> doPaymentRefundReadyCall(PaymentRefundReadyRequest paymentRefundReadyRequest) {
         return mRepoService.doPaymentRefundReadyCall(paymentRefundReadyRequest);
+    }
+
+    @Override
+    public Single<PaymentHistoryResponse> doPaymentHistoryCall(int tokenSystemId, int storeId, String date, String filter, int pageNo, int pageSize) {
+        return mRepoService.doPaymentHistoryCall(tokenSystemId, storeId, date, filter, pageNo, pageSize);
     }
 }

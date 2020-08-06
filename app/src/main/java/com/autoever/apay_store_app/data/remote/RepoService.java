@@ -9,6 +9,7 @@ import com.autoever.apay_store_app.data.model.api.LoginRequest;
 import com.autoever.apay_store_app.data.model.api.LoginResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentDoRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentDoResponse;
+import com.autoever.apay_store_app.data.model.api.PaymentHistoryResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentReadyRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentReadyResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundReadyRequest;
@@ -70,4 +71,14 @@ public interface RepoService {
 
     @PUT("payment/refund/ready")
     Single<PaymentRefundReadyResponse> doPaymentRefundReadyCall(@Body PaymentRefundReadyRequest paymentRefundReadyRequest);
+
+    @GET("store/tokenSystem/{tokenSystemId}/paymentHistories")
+    Single<PaymentHistoryResponse> doPaymentHistoryCall(
+            @Path("tokenSystemId") int tokenSystemId,
+            @Query("storeId") int storeId,
+            @Query("date") String date,
+            @Query("filter") String filter,
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize
+    );
 }

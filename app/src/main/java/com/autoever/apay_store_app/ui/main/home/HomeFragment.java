@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +20,9 @@ import com.autoever.apay_store_app.R;
 import com.autoever.apay_store_app.ViewModelProviderFactory;
 import com.autoever.apay_store_app.databinding.FragmentHomeBinding;
 import com.autoever.apay_store_app.ui.base.BaseFragment;
+import com.autoever.apay_store_app.ui.payment.history.PaymentHistoryAdapter;
+
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -28,6 +33,10 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
 
     @Inject
     ViewModelProviderFactory factory;
+    @Inject
+    LinearLayoutManager mLayoutManager;
+    @Inject
+    PaymentHistoryAdapter mPaymentHistoryAdapter;
 
     private HomeViewModel mHomeViewModel;
 
@@ -61,6 +70,29 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         super.onViewCreated(view, savedInstanceState);
         mFragmentHomeBinding = getViewDataBinding();
         mHomeViewModel.setNavigator(this);
+
+        setup();
+
+        fetchPaymentMonthlyHistoryList();
+    }
+
+    private void setup() {
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mFragmentHomeBinding.txRecyclerView.setLayoutManager(mLayoutManager);
+        mFragmentHomeBinding.txRecyclerView.setAdapter(mPaymentHistoryAdapter);
+
+
+    }
+
+    private void fetchPaymentMonthlyHistoryList() {
+        mHomeViewModel.fetchPaymentMonthlyHistoryData(
+                1,
+                2,
+                new Date(),
+                null,
+                0,
+                10
+        );
     }
 
     @Override

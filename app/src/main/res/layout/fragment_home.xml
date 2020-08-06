@@ -124,7 +124,10 @@
                 android:id="@+id/tx_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp" />
+                android:layout_marginHorizontal="20dp"
+                android:scrollbars="none"
+                app:adapter="@{viewModel.paymentHistoryContentLiveData}"
+                tools:listitem="@layout/item_payment_history"/>
 
         </LinearLayout>
 
