@@ -24,6 +24,9 @@ import com.autoever.apay_store_app.ui.base.BaseFragment;
 import com.autoever.apay_store_app.ui.payment.history.PaymentHistoryAdapter;
 import com.autoever.apay_store_app.ui.payment.scanner.CustomScannerActivity;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -87,6 +90,17 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         mFragmentHomeBinding.purchaseButton.setOnClickListener(v -> {
             openCustomScanner();
         });
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        String today = simpleDateFormat.format(new Date());
+
+        LocalDate lastDateOfThisMonth = LocalDate.parse(today, DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+        lastDateOfThisMonth = lastDateOfThisMonth.withDayOfMonth(
+                lastDateOfThisMonth.getMonth().length(lastDateOfThisMonth.isLeapYear()));
+        LocalDate firstDateOfThisMonth = LocalDate.parse(today, DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+        firstDateOfThisMonth = firstDateOfThisMonth.withDayOfMonth(1);
+
+        mFragmentHomeBinding.currentMonthPeriod.setText(firstDateOfThisMonth.toString() + " ~ " + lastDateOfThisMonth.toString());
     }
 
     private void openCustomScanner() {
