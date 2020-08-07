@@ -1,5 +1,6 @@
 package com.autoever.apay_store_app.ui.main.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.autoever.apay_store_app.ViewModelProviderFactory;
 import com.autoever.apay_store_app.databinding.FragmentHomeBinding;
 import com.autoever.apay_store_app.ui.base.BaseFragment;
 import com.autoever.apay_store_app.ui.payment.history.PaymentHistoryAdapter;
+import com.autoever.apay_store_app.ui.payment.scanner.CustomScannerActivity;
 
 import java.util.Date;
 
@@ -30,6 +32,7 @@ import javax.inject.Inject;
 public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewModel> implements HomeNavigator {
 
     public static final String TAG = HomeFragment.class.getSimpleName();
+    private final static int QR_CODE_SCANNED = 1;
 
     @Inject
     ViewModelProviderFactory factory;
@@ -81,7 +84,15 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         mFragmentHomeBinding.txRecyclerView.setLayoutManager(mLayoutManager);
         mFragmentHomeBinding.txRecyclerView.setAdapter(mPaymentHistoryAdapter);
 
+        mFragmentHomeBinding.purchaseButton.setOnClickListener(v -> {
+            openCustomScanner();
+        });
+    }
 
+    private void openCustomScanner() {
+        Log.d("debug", "openCustomScannerActivity");
+        Intent intent = CustomScannerActivity.newIntent(getBaseActivity());
+        startActivityForResult(intent, QR_CODE_SCANNED);
     }
 
     private void fetchPaymentMonthlyHistoryList() {

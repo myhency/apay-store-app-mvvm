@@ -185,4 +185,9 @@ public class AppDataManager implements DataManager {
     public Single<PaymentHistoryResponse> doPaymentHistoryCall(int tokenSystemId, int storeId, String date, String filter, int pageNo, int pageSize) {
         return mRepoService.doPaymentHistoryCall(tokenSystemId, storeId, date, filter, pageNo, pageSize);
     }
+
+    @Override
+    public Single<BalanceResponse> doGetBalanceCall(int tokenSystemId, int subscriberId) {
+        return mRepoService.doGetBalanceCall(tokenSystemId, subscriberId);
+    }
 }

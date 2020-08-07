@@ -1,6 +1,7 @@
 package com.autoever.apay_store_app.data.remote;
 
 import com.autoever.apay_store_app.data.model.api.AuthTestResponse;
+import com.autoever.apay_store_app.data.model.api.BalanceResponse;
 import com.autoever.apay_store_app.data.model.api.CardUseDetailResponse;
 import com.autoever.apay_store_app.data.model.api.CardUseHistoryResponse;
 import com.autoever.apay_store_app.data.model.api.ChargeReadyRequest;
@@ -80,5 +81,11 @@ public interface RepoService {
             @Query("filter") String filter,
             @Query("pageNo") int pageNo,
             @Query("pageSize") int pageSize
+    );
+
+    @GET("tokenSystem/{tokenSystemId}/balance")
+    Single<BalanceResponse> doGetBalanceCall(
+            @Path("tokenSystemId") int tokenSystemId,
+            @Query("subscriberId") int subscriberId
     );
 }

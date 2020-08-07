@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.autoever.apay_store_app.data.DataManager;
 import com.autoever.apay_store_app.ui.main.MainViewModel;
 import com.autoever.apay_store_app.ui.main.home.HomeViewModel;
+import com.autoever.apay_store_app.ui.payment.scanner.CustomScannerViewModel;
 import com.autoever.apay_store_app.ui.splash.SplashViewModel;
 import com.autoever.apay_store_app.ui.user.login.LoginViewModel;
 import com.autoever.apay_store_app.utils.rx.SchedulerProvider;
@@ -34,6 +35,8 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return (T) new LoginViewModel(dataManager, schedulerProvider);
         } else if (modelClass.isAssignableFrom(HomeViewModel.class)) {
             return (T) new HomeViewModel(dataManager, schedulerProvider);
+        } else if (modelClass.isAssignableFrom(CustomScannerViewModel.class)) {
+            return (T) new CustomScannerViewModel(dataManager, schedulerProvider);
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class " + modelClass.getName());
