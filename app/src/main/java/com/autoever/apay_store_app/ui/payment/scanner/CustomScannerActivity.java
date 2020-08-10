@@ -89,6 +89,7 @@ public class CustomScannerActivity extends BaseActivity<ActivityCustomScannerBin
                 .setBarcodeFormats(Barcode.QR_CODE)
                 .build();
         mCameraSource = new CameraSource.Builder(this, mBarcodeDetector)
+                .setAutoFocusEnabled(true)
                 .build();
         cameraPreview.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
@@ -127,7 +128,6 @@ public class CustomScannerActivity extends BaseActivity<ActivityCustomScannerBin
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> qrcodes = detections.getDetectedItems();
                 if (qrcodes.size() != 0) {
-//                    Log.d("debug", "qr value: " + qrcodes.valueAt(0).displayValue);
                     Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                     vibrator.vibrate(200);
                     Intent data = new Intent();

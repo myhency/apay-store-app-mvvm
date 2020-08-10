@@ -21,6 +21,7 @@ import com.autoever.apay_store_app.R;
 import com.autoever.apay_store_app.ViewModelProviderFactory;
 import com.autoever.apay_store_app.databinding.FragmentHomeBinding;
 import com.autoever.apay_store_app.ui.base.BaseFragment;
+import com.autoever.apay_store_app.ui.payment.PaymentActivity;
 import com.autoever.apay_store_app.ui.payment.history.PaymentHistoryAdapter;
 import com.autoever.apay_store_app.ui.payment.scanner.CustomScannerActivity;
 
@@ -30,6 +31,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.inject.Inject;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewModel> implements HomeNavigator {
@@ -125,4 +128,36 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         ANError anError = (ANError) throwable;
         Log.d("debug",anError.getMessage());
     }
+
+    @Override
+    public void openPaymentActivity(String shopCode) {
+        Log.d("debug", "openPaymentActivity");
+        Intent intent = PaymentActivity.newIntent(getBaseActivity());
+        intent.putExtra("shopCode", shopCode);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d("debug", data.getStringExtra("shopCode"));
+        switch (requestCode) {
+            case QR_CODE_SCANNED:
+                switch (resultCode) {
+                    case RESULT_OK:  //사용자 앱에서 Dynamic QR Code 를 읽어 Activity 에게 전달.
+                        String shopCode = data.getStringExtra("shopCode");
+                        openPaymentActivity(shopCode);
+                    default:
+                        break;
+                }
+            default:
+                break;
+        }
+
+//        getBaseActivity().onReceivedMessageFromFragment(TAG, );
+
+    }
+
+
 }
