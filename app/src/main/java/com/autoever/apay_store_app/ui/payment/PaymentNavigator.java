@@ -7,4 +7,6 @@ public interface PaymentNavigator {
     void openPriceFragment(String shopCode);
 
     void openPriceConfirmFragment(String shopCode, int price);
+
+    void doPaymentReady();
 }

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.androidnetworking.error.ANError;
 import com.autoever.apay_store_app.BR;
 import com.autoever.apay_store_app.R;
 import com.autoever.apay_store_app.ViewModelProviderFactory;
@@ -22,6 +23,7 @@ import com.autoever.apay_store_app.utils.CommonUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -98,7 +100,9 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
 
     @Override
     public void handleError(Throwable throwable) {
-
+        ANError anError = (ANError) throwable;
+        Log.d("debug", "anError.getErrorBody():" + anError.getErrorBody());
+        Log.d("debug", "throwable message: " + throwable.getMessage());
     }
 
     @Override
@@ -156,9 +160,9 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
             case "PriceFragment":
                 openPriceConfirmFragment(storeName, price);
                 break;
-//            case "PriceConfirmFragment":
-//                openAuthFragment();
-//                break;
+            case "PriceConfirmFragment":
+                doPaymentReady();
+                break;
 //            case "AuthFragment":
 //                doPaymentReady();
 //                break;
@@ -178,5 +182,17 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void doPaymentReady() {
+        Log.d("debug", "doPaymentReady");
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        mPaymentViewModel.doPaymentReadyUserDynamic(
+                Long.valueOf(price),
+                String.valueOf(timestamp.getTime()),
+                2L,
+                getIntent().getStringExtra("shopCode")
+        );
     }
 }

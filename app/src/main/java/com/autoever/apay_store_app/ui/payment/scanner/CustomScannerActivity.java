@@ -130,6 +130,8 @@ public class CustomScannerActivity extends BaseActivity<ActivityCustomScannerBin
                 if (qrcodes.size() != 0) {
                     Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                     vibrator.vibrate(200);
+
+                    //사용자가 생성한 QR 을 스캔하여 PaymentActivity 에게 전달한다.
                     Intent data = new Intent();
                     data.putExtra("shopCode", qrcodes.valueAt(0).displayValue);
                     setResult(RESULT_OK, data);

@@ -90,20 +90,45 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         mFragmentHomeBinding.txRecyclerView.setLayoutManager(mLayoutManager);
         mFragmentHomeBinding.txRecyclerView.setAdapter(mPaymentHistoryAdapter);
 
+        //결제하기 버튼 누를시 실행.
         mFragmentHomeBinding.purchaseButton.setOnClickListener(v -> {
             openCustomScanner();
         });
 
+        //이달의 거래내역의 날짜 출력.
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd");
         String today = simpleDateFormat.format(new Date());
-
         LocalDate lastDateOfThisMonth = LocalDate.parse(today, DateTimeFormatter.ofPattern("yyyy.MM.dd"));
         lastDateOfThisMonth = lastDateOfThisMonth.withDayOfMonth(
                 lastDateOfThisMonth.getMonth().length(lastDateOfThisMonth.isLeapYear()));
         LocalDate firstDateOfThisMonth = LocalDate.parse(today, DateTimeFormatter.ofPattern("yyyy.MM.dd"));
         firstDateOfThisMonth = firstDateOfThisMonth.withDayOfMonth(1);
-
         mFragmentHomeBinding.currentMonthPeriod.setText(firstDateOfThisMonth.toString() + " ~ " + lastDateOfThisMonth.toString());
+
+        //RecyclerView 세팅.
+        mFragmentHomeBinding.txRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                int lastVisibleItemPosition = ((LinearLayoutManager) recyclerView.getLayoutManager())
+                        .findLastCompletelyVisibleItemPosition();
+                int itemTotalCount = recyclerView.getAdapter().getItemCount();
+
+                int firstVisibleItemPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
+
+                if(firstVisibleItemPosition != 0) {
+                    mFragmentHomeBinding.purchaseButton.setVisibility(View.GONE);
+                } else {
+                    mFragmentHomeBinding.purchaseButton.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     private void openCustomScanner() {
