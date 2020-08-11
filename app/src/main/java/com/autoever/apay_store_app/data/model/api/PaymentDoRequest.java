@@ -19,33 +19,33 @@ public class PaymentDoRequest {
 
     @Expose
     @SerializedName("userId")
-    private String userId;
+    private Long userId;
 
     @Expose
     @SerializedName("storeId")
-    private String storeId;
+    private Long storeId;
 
     @Expose
     @SerializedName("tokenSystemId")
-    private String tokenSystemId;
+    private Long tokenSystemId;
 
     @Expose
     @SerializedName("amount")
-    private int amount;
+    private Long amount;
 
     @Expose
     @SerializedName("paymentId")
-    private String paymentId;
+    private Long paymentId;
 
     @Expose
     @SerializedName("identifier")
     private String identifier;
 
-    public PaymentDoRequest(String userId,
-                            String storeId,
-                            String tokenSystemId,
-                            int amount,
-                            String paymentId,
+    public PaymentDoRequest(Long userId,
+                            Long storeId,
+                            Long tokenSystemId,
+                            Long amount,
+                            Long paymentId,
                             String identifier) {
         this.userId = userId;
         this.storeId = storeId;
@@ -55,23 +55,23 @@ public class PaymentDoRequest {
         this.identifier = identifier;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public String getStoreId() {
+    public Long getStoreId() {
         return storeId;
     }
 
-    public String getTokenSystemId() {
+    public Long getTokenSystemId() {
         return tokenSystemId;
     }
 
-    public int getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public String getPaymentId() {
+    public Long getPaymentId() {
         return paymentId;
     }
 

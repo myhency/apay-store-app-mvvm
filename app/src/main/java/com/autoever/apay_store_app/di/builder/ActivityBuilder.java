@@ -23,6 +23,7 @@ import com.autoever.apay_store_app.ui.payment.confirm.PriceConfirmFragment;
 import com.autoever.apay_store_app.ui.payment.confirm.PriceConfirmFragmentProvider;
 import com.autoever.apay_store_app.ui.payment.price.PriceFragment;
 import com.autoever.apay_store_app.ui.payment.price.PriceFragmentProvider;
+import com.autoever.apay_store_app.ui.payment.receipt.ReceiptFragmentProvider;
 import com.autoever.apay_store_app.ui.payment.scanner.CustomScannerActivity;
 import com.autoever.apay_store_app.ui.splash.SplashActivity;
 import com.autoever.apay_store_app.ui.user.login.LoginActivity;
@@ -50,7 +51,8 @@ public abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = {
             PriceFragmentProvider.class,
-            PriceConfirmFragmentProvider.class
+            PriceConfirmFragmentProvider.class,
+            ReceiptFragmentProvider.class
     })
     abstract PaymentActivity bindPaymentActivity();
 

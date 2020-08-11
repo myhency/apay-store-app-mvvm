@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -18,12 +19,14 @@ import com.autoever.apay_store_app.databinding.ActivityPaymentBinding;
 import com.autoever.apay_store_app.ui.base.BaseActivity;
 import com.autoever.apay_store_app.ui.payment.confirm.PriceConfirmFragment;
 import com.autoever.apay_store_app.ui.payment.price.PriceFragment;
+import com.autoever.apay_store_app.ui.payment.receipt.ReceiptFragment;
 import com.autoever.apay_store_app.utils.CommonUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -194,5 +197,16 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
                 2L,
                 getIntent().getStringExtra("shopCode")
         );
+    }
+
+    @Override
+    public void openReceiptFragment(String storeName, Date createdDate, int amount, int userBalance) {
+        mActivityPaymentBinding.toolbar.setVisibility(View.INVISIBLE);
+        mActivityPaymentBinding.appBarLayout.setBackgroundColor(getResources().getColor(R.color.receiptBackgroundColor, null));
+        mFragmentManager
+                .beginTransaction()
+                .add(R.id.clRootView, ReceiptFragment.newInstance(storeName, createdDate, amount, userBalance), ReceiptFragment.TAG)
+                .addToBackStack(ReceiptFragment.TAG)
+                .commitAllowingStateLoss();
     }
 }

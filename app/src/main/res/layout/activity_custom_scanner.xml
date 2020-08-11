@@ -84,6 +84,15 @@
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:fontFamily="@font/spoqa_han_sans_regular"
+                    android:text="사용자의 QR 코드를 스캔해 주세요"
+                    android:textColor="#FFFFFF" />
+
             </RelativeLayout>
 
         </RelativeLayout>
