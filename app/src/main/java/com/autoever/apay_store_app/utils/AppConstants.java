@@ -20,6 +20,10 @@ public final class AppConstants {
 
     public static final String TIMESTAMP_FORMAT = "yyyy.MM.dd HH:mm:ss";
 
+    public static final int PAYMENT_LIST = 100;
+
+    public static final int PRICE_INPUT = 101;
+
     private AppConstants() {
         // This utility class is not publicly instantiable
     }

@@ -1,5 +1,7 @@
 package com.autoever.apay_store_app.ui.main.home;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,6 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.androidnetworking.error.ANError;
 import com.autoever.apay_store_app.BR;
@@ -24,6 +28,7 @@ import com.autoever.apay_store_app.ui.base.BaseFragment;
 import com.autoever.apay_store_app.ui.payment.PaymentActivity;
 import com.autoever.apay_store_app.ui.payment.history.PaymentHistoryAdapter;
 import com.autoever.apay_store_app.ui.payment.scanner.CustomScannerActivity;
+import com.autoever.apay_store_app.utils.AppConstants;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -110,22 +115,70 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
+                Log.d("debug", "scroll state:" + newState);
+//                if(newState == RecyclerView.SCROLL_STATE_IDLE) {
+//                    mFragmentHomeBinding.purchaseButton.animate()
+//                            .translationY(0)
+//                            .alpha(1.0f)
+//                            .setDuration(100)
+//                            .setListener(new AnimatorListenerAdapter() {
+//                                @Override
+//                                public void onAnimationEnd(Animator animation) {
+//                                    super.onAnimationEnd(animation);
+//                                    mFragmentHomeBinding.purchaseButton.setVisibility(View.VISIBLE);
+//                                }
+//                            });
+//                } else {
+//                    mFragmentHomeBinding.purchaseButton.animate()
+//                            .translationY(mFragmentHomeBinding.purchaseButton.getHeight())
+//                            .alpha(0.0f)
+//                            .setDuration(10)
+//                            .setListener(new AnimatorListenerAdapter() {
+//                                @Override
+//                                public void onAnimationEnd(Animator animation) {
+//                                    super.onAnimationEnd(animation);
+//                                    mFragmentHomeBinding.purchaseButton.setVisibility(View.GONE);
+//                                }
+//                            });
+//                }
             }
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                int lastVisibleItemPosition = ((LinearLayoutManager) recyclerView.getLayoutManager())
-                        .findLastCompletelyVisibleItemPosition();
+                int lastVisibleItemPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
                 int itemTotalCount = recyclerView.getAdapter().getItemCount();
-
                 int firstVisibleItemPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
 
-                if(firstVisibleItemPosition != 0) {
-                    mFragmentHomeBinding.purchaseButton.setVisibility(View.GONE);
+//                Log.d("debug", "firstVisibleItemPosition: " + firstVisibleItemPosition);
+//                Log.d("debug", "lastVisibleItemPosition: " + lastVisibleItemPosition);
+//                Log.d("debug", "itemTotalCount: " + itemTotalCount);
+
+                if (firstVisibleItemPosition != 0) {
+                    mFragmentHomeBinding.purchaseButton.animate()
+                            .translationY(mFragmentHomeBinding.purchaseButton.getHeight())
+                            .alpha(0.0f)
+                            .setDuration(10)
+                            .setListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    super.onAnimationEnd(animation);
+                                    mFragmentHomeBinding.purchaseButton.setVisibility(View.GONE);
+                                }
+                            });
                 } else {
-                    mFragmentHomeBinding.purchaseButton.setVisibility(View.VISIBLE);
+                    mFragmentHomeBinding.purchaseButton.animate()
+                            .translationY(0)
+                            .alpha(1.0f)
+                            .setDuration(10)
+                            .setListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animation) {
+                                    super.onAnimationEnd(animation);
+                                    mFragmentHomeBinding.purchaseButton.setVisibility(View.VISIBLE);
+                                }
+                            });
                 }
             }
         });
@@ -151,11 +204,11 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     @Override
     public void handleError(Throwable throwable) {
         ANError anError = (ANError) throwable;
-        Log.d("debug",anError.getMessage());
+        Log.d("debug", anError.getMessage());
     }
 
     @Override
-    public void openPaymentActivity(String shopCode) {
+    public void openPaymentActivity(int whatToOpen, String shopCode) {
         Log.d("debug", "openPaymentActivity");
         Intent intent = PaymentActivity.newIntent(getBaseActivity());
         intent.putExtra("shopCode", shopCode);
@@ -172,7 +225,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
                 switch (resultCode) {
                     case RESULT_OK:  //사용자 앱에서 Dynamic QR Code 를 읽어 Activity 에게 전달.
                         String shopCode = data.getStringExtra("shopCode");
-                        openPaymentActivity(shopCode);
+                        openPaymentActivity(AppConstants.PRICE_INPUT, shopCode);
                     default:
                         break;
                 }

@@ -17,9 +17,11 @@ import com.autoever.apay_store_app.R;
 import com.autoever.apay_store_app.ViewModelProviderFactory;
 import com.autoever.apay_store_app.databinding.ActivityPaymentBinding;
 import com.autoever.apay_store_app.ui.base.BaseActivity;
+import com.autoever.apay_store_app.ui.payment.cancel.CancelFragment;
 import com.autoever.apay_store_app.ui.payment.confirm.PriceConfirmFragment;
 import com.autoever.apay_store_app.ui.payment.price.PriceFragment;
 import com.autoever.apay_store_app.ui.payment.receipt.ReceiptFragment;
+import com.autoever.apay_store_app.utils.AppConstants;
 import com.autoever.apay_store_app.utils.CommonUtils;
 
 import org.json.JSONException;
@@ -82,7 +84,11 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
 
         setup();
 
-        openPriceFragment(getIntent().getStringExtra("shopCode"));
+        if (getIntent().getIntExtra("whatToOpen", 100) == AppConstants.PAYMENT_LIST) {
+            openCancelFragment();
+        } else {
+            openPriceFragment(getIntent().getStringExtra("shopCode"));
+        }
     }
 
     private void setup() {
@@ -207,6 +213,16 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
                 .beginTransaction()
                 .add(R.id.clRootView, ReceiptFragment.newInstance(storeName, createdDate, amount, userBalance), ReceiptFragment.TAG)
                 .addToBackStack(ReceiptFragment.TAG)
+                .commitAllowingStateLoss();
+    }
+
+    @Override
+    public void openCancelFragment() {
+        mActivityPaymentBinding.toolbarTitle.setText("결제취소 요청내역");
+        mFragmentManager
+                .beginTransaction()
+                .add(R.id.clRootView, CancelFragment.newInstance(), CancelFragment.TAG)
+                .addToBackStack(CancelFragment.TAG)
                 .commitAllowingStateLoss();
     }
 }

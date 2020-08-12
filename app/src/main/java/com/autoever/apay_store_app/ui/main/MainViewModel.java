@@ -9,4 +9,9 @@ public class MainViewModel extends BaseViewModel<MainNavigator> {
     public MainViewModel(DataManager mDataManager, SchedulerProvider schedulerProvider) {
         super(mDataManager, schedulerProvider);
     }
+
+    public void logout() {
+        getDataManager().setUserAsLoggedOut();
+        getNavigator().openLoginActivity();
+    }
 }

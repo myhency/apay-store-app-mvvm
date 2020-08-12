@@ -4,5 +4,5 @@ public interface HomeNavigator {
 
     void handleError(Throwable throwable);
 
-    void openPaymentActivity(String shopCode);
+    void openPaymentActivity(int whatToOpen, String shopCode);
 }

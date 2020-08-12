@@ -16,6 +16,7 @@ import com.autoever.apay_store_app.data.model.api.LoginResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentDoRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentDoResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentHistoryResponse;
+import com.autoever.apay_store_app.data.model.api.PaymentListResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentReadyRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentReadyResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentReadyUserDynamicRequest;
@@ -78,14 +79,7 @@ public class AppDataManager implements DataManager {
         setAccessToken(accessToken);
         setCurrentUserId(userId);
         setCurrentUserLoggedInMode(loggedInMode);
-
-//        updateRepoServiceInterceptor(accessToken);
     }
-
-//    @Override
-//    public void updateRepoServiceInterceptor(String accessToken) {
-//        mRepoService.getRepoServiceInterceptor().setSessionToken(accessToken);
-//    }
 
     @Override
     public Observable<Boolean> insertUser(User user) {
@@ -196,5 +190,10 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<PaymentReadyUserDynamicResponse> doPaymentReadyUserDynamic(PaymentReadyUserDynamicRequest paymentReadyUserDynamicRequest) {
         return mRepoService.doPaymentReadyUserDynamic(paymentReadyUserDynamicRequest);
+    }
+
+    @Override
+    public Single<PaymentListResponse> doGetPaymentListCall(int tokenSystemId, int storeId, String filter, int pageNo, int pageSize) {
+        return mRepoService.doGetPaymentListCall(tokenSystemId, storeId, filter, pageNo, pageSize);
     }
 }

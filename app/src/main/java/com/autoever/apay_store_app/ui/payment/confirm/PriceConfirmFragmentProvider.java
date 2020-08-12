@@ -7,6 +7,6 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class PriceConfirmFragmentProvider {
 
     @ContributesAndroidInjector
-    abstract PriceConfirmFragment providerPriceConfirmFactory();
+    abstract PriceConfirmFragment providerPriceConfirmFragmentFactory();
 }
 

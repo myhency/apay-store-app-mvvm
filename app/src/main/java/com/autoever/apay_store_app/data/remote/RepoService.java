@@ -11,6 +11,7 @@ import com.autoever.apay_store_app.data.model.api.LoginResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentDoRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentDoResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentHistoryResponse;
+import com.autoever.apay_store_app.data.model.api.PaymentListResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentReadyRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentReadyResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentReadyUserDynamicRequest;
@@ -20,12 +21,9 @@ import com.autoever.apay_store_app.data.model.api.PaymentRefundReadyResponse;
 import com.autoever.apay_store_app.data.model.api.UserRegisterRequest;
 import com.autoever.apay_store_app.data.model.api.UserRegisterResponse;
 
-import javax.inject.Inject;
-
 import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -94,4 +92,13 @@ public interface RepoService {
     @POST("payment/ready/userDynamic")
     @Headers("No-Authentication: true")
     Single<PaymentReadyUserDynamicResponse> doPaymentReadyUserDynamic(@Body PaymentReadyUserDynamicRequest paymentReadyUserDynamicRequest);
+
+    @GET("store/tokenSystem/{tokenSystemId}/payment")
+    Single<PaymentListResponse> doGetPaymentListCall(
+            @Path("tokenSystemId") int tokenSystemId,
+            @Query("storeId") int storeId,
+            @Query("filter") String filter,
+            @Query("pageNo") int pageNo,
+            @Query("pageSize") int pageSize
+    );
 }
