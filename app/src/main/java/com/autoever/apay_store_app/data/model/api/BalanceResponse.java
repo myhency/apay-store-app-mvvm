@@ -1,10 +1,7 @@
 package com.autoever.apay_store_app.data.model.api;
 
-import com.autoever.apay_store_app.utils.CommonUtils;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.Objects;
 
 public final class BalanceResponse {
 

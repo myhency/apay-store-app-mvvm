@@ -2,7 +2,6 @@ package com.autoever.apay_store_app.ui.user.login;
 
 import android.util.Log;
 
-import com.autoever.apay_store_app.ui.base.BaseViewModel;
 import com.autoever.apay_store_app.data.DataManager;
 import com.autoever.apay_store_app.data.model.api.LoginRequest;
 import com.autoever.apay_store_app.ui.base.BaseViewModel;

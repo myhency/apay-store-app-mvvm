@@ -2,8 +2,6 @@ package com.autoever.apay_store_app.ui.payment.cancel;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.autoever.apay_store_app.ui.main.home.HomeFragment;
-import com.autoever.apay_store_app.ui.payment.history.PaymentHistoryAdapter;
 import com.autoever.apay_store_app.ui.payment.list.PaymentListAdapter;
 
 import java.util.ArrayList;

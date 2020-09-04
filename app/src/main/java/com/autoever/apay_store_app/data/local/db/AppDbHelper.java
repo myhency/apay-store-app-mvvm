@@ -2,8 +2,6 @@ package com.autoever.apay_store_app.data.local.db;
 
 import com.autoever.apay_store_app.data.model.db.User;
 
-import java.util.concurrent.Callable;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 

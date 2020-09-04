@@ -1,7 +1,5 @@
 package com.autoever.apay_store_app.ui.payment.cancel;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 

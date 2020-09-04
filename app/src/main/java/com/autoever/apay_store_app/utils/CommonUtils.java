@@ -7,11 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.provider.Settings;
 
-import androidx.databinding.ViewDataBinding;
-
 import com.autoever.apay_store_app.R;
-import com.autoever.apay_store_app.ui.base.BaseActivity;
-import com.autoever.apay_store_app.ui.base.BaseViewModel;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;

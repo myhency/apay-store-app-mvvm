@@ -7,7 +7,6 @@ import com.autoever.apay_store_app.data.remote.ApiHelper;
 import com.autoever.apay_store_app.data.remote.RepoService;
 
 import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
 
 public interface DataManager extends DbHelper, ApiHelper, PreferencesHelper, RepoService {
     Observable<Boolean> seedDatabaseQuestions();

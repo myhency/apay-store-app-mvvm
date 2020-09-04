@@ -1,7 +1,5 @@
 package com.autoever.apay_store_app.ui.main.home;
 
-import android.widget.LinearLayout;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.autoever.apay_store_app.ui.payment.history.PaymentHistoryAdapter;

@@ -1,7 +1,5 @@
 package com.autoever.apay_store_app.ui.payment.common;
 
-import android.util.Log;
-
 import java.util.Arrays;
 import java.util.List;
 

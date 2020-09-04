@@ -1,11 +1,10 @@
 package com.autoever.apay_store_app.ui.splash;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.lifecycle.ViewModelProviders;
 
 import com.autoever.apay_store_app.BR;
 import com.autoever.apay_store_app.R;
