@@ -1,5 +1,6 @@
 package com.autoever.apay_store_app.ui.payment.list;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -108,6 +109,7 @@ public class PaymentListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onItemClick(Long paymentId, String paymentStatus) {
+            Log.d("debug", "execute onItemClick");
             onItemClickInterface.execute(paymentId, paymentStatus);
         }
     }

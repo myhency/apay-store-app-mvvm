@@ -18,6 +18,7 @@ import com.autoever.apay_store_app.ViewModelProviderFactory;
 import com.autoever.apay_store_app.databinding.ActivityPaymentBinding;
 import com.autoever.apay_store_app.ui.base.BaseActivity;
 import com.autoever.apay_store_app.ui.payment.cancel.CancelFragment;
+import com.autoever.apay_store_app.ui.payment.cancel.detail.CancelDetailFragment;
 import com.autoever.apay_store_app.ui.payment.confirm.PriceConfirmFragment;
 import com.autoever.apay_store_app.ui.payment.price.PriceFragment;
 import com.autoever.apay_store_app.ui.payment.receipt.ReceiptFragment;
@@ -143,17 +144,16 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
             case android.R.id.home:
                 List<Fragment> fragments = mFragmentManager.getFragments();
                 String fragmentTag = fragments.get(fragments.size() - 1).getTag();
+                Log.d("debug", "current fragment: "+fragmentTag);
                 switch (fragmentTag) {
                     case "PriceFragment":
+                    case "CancelFragment":
                         finish();
+                        break;
                     case "PriceConfirmFragment":
                     case "AuthFragment":
-                        Fragment fragment = mFragmentManager.findFragmentByTag(fragmentTag);
-                        mFragmentManager
-                                .beginTransaction()
-                                .disallowAddToBackStack()
-                                .remove(fragment)
-                                .commit();
+                    case "CancelDetailFragment":
+                        removeFragment(fragmentTag);
                         break;
                 }
                 return true;
@@ -172,6 +172,9 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
             case "PriceConfirmFragment":
                 doPaymentReady();
                 break;
+            case "CancelDetailFragment":
+                removeFragment(tag);
+                break;
 //            case "AuthFragment":
 //                doPaymentReady();
 //                break;
@@ -185,12 +188,24 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
                 case "PriceFragment":
                     price = CommonUtils.parseToInt(message.getString("price"));
                     break;
+                case "CancelFragment":
+                    openCancelDetailFragment(message.getLong("paymentId"));
                 default:
                     break;
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void openCancelDetailFragment(long paymentId) {
+        Log.d("debug", "openCancelDetailFragment");
+        mFragmentManager
+                .beginTransaction()
+                .add(R.id.clRootView, CancelDetailFragment.newInstance(paymentId), CancelDetailFragment.TAG)
+                .addToBackStack(CancelDetailFragment.TAG)
+                .commitAllowingStateLoss();
     }
 
     @Override
@@ -224,5 +239,14 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
                 .add(R.id.clRootView, CancelFragment.newInstance(), CancelFragment.TAG)
                 .addToBackStack(CancelFragment.TAG)
                 .commitAllowingStateLoss();
+    }
+
+    public void removeFragment(String tag) {
+        Fragment fragment = mFragmentManager.findFragmentByTag(tag);
+        mFragmentManager
+                .beginTransaction()
+                .disallowAddToBackStack()
+                .remove(fragment)
+                .commit();
     }
 }

@@ -40,6 +40,7 @@ public class CancelViewModel extends BaseViewModel<CancelNavigator> {
                         pageNo,
                         pageSize
                 )
+                .doOnSuccess(response -> getNavigator().onCompleteUpdatePaymentCancelList())
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(paymentCancelListResponse -> {

@@ -11,7 +11,8 @@ public enum PaymentStatus {
     PAY_READY("결제대기", "PAY_READY", false),
     PAY_READY_CANCEL("결제대기취소", "PAY_READY_CANCEL",false),
     PAY_CANCEL("결제취소", "PAY_CANCEL", true),
-    REFUND_COMPLETE("환전완료", "REFUND_COMPLETE", false);
+    REFUND_COMPLETE("환전완료", "REFUND_COMPLETE", false),
+    REFUND_READY("결제취소 요청", "REFUND_READY", false);
 
     private String displayValue;
     private String status;

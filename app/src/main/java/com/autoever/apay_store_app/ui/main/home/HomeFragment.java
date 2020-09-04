@@ -212,6 +212,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         Log.d("debug", "openPaymentActivity");
         Intent intent = PaymentActivity.newIntent(getBaseActivity());
         intent.putExtra("shopCode", shopCode);
+        intent.putExtra("whatToOpen", whatToOpen);
         startActivity(intent);
     }
 
@@ -226,15 +227,13 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
                     case RESULT_OK:  //사용자 앱에서 Dynamic QR Code 를 읽어 Activity 에게 전달.
                         String shopCode = data.getStringExtra("shopCode");
                         openPaymentActivity(AppConstants.PRICE_INPUT, shopCode);
+                        break;
                     default:
                         break;
                 }
             default:
                 break;
         }
-
-//        getBaseActivity().onReceivedMessageFromFragment(TAG, );
-
     }
 
 

@@ -13,6 +13,7 @@ import com.autoever.apay_store_app.data.model.api.ChargeReadyRequest;
 import com.autoever.apay_store_app.data.model.api.ChargeReadyResponse;
 import com.autoever.apay_store_app.data.model.api.LoginRequest;
 import com.autoever.apay_store_app.data.model.api.LoginResponse;
+import com.autoever.apay_store_app.data.model.api.PaymentDetailResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentDoRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentDoResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentHistoryResponse;
@@ -21,6 +22,8 @@ import com.autoever.apay_store_app.data.model.api.PaymentReadyRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentReadyResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentReadyUserDynamicRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentReadyUserDynamicResponse;
+import com.autoever.apay_store_app.data.model.api.PaymentRefundDoRequest;
+import com.autoever.apay_store_app.data.model.api.PaymentRefundDoResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundReadyRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundReadyResponse;
 import com.autoever.apay_store_app.data.model.api.UserRegisterRequest;
@@ -196,4 +199,15 @@ public class AppDataManager implements DataManager {
     public Single<PaymentListResponse> doGetPaymentListCall(int tokenSystemId, int storeId, String filter, int pageNo, int pageSize) {
         return mRepoService.doGetPaymentListCall(tokenSystemId, storeId, filter, pageNo, pageSize);
     }
+
+    @Override
+    public Single<PaymentRefundDoResponse> doPaymentRefundDoCall(PaymentRefundDoRequest paymentRefundDoRequest) {
+        return mRepoService.doPaymentRefundDoCall(paymentRefundDoRequest);
+    }
+
+    @Override
+    public Single<PaymentDetailResponse> doGetPaymentDetailCall(Long paymentId, String target) {
+        return mRepoService.doGetPaymentDetailCall(paymentId, target);
+    }
+
 }

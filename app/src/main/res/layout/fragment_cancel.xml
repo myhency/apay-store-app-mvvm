@@ -31,34 +31,17 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="7dp"
                 android:paddingRight="7dp"
-                android:background="@drawable/bg_dialog_radius_grey">
-
-                <ImageView
-                    android:id="@+id/prev_month"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    app:srcCompat="@drawable/arrow_l" />
+                android:background="@color/colorWhite">
 
                 <TextView
                     android:id="@+id/current_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_centerHorizontal="true"
                     android:padding="10dp"
-                    android:text="2020년 4월"
+                    android:text="내역을 선택하여 승인 또는 거절을 진행하시길 바랍니다."
                     android:textColor="#000000"
                     android:textSize="13sp" />
-
-                <ImageView
-                    android:id="@+id/post_month"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    app:srcCompat="@drawable/arrow_r" />
 
             </RelativeLayout>
 

@@ -195,11 +195,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public void openPaymentActivity(int whatToOpen) {
-        Log.d("debug", "LoginActivity Open");
+        Log.d("debug", "openPaymentActivity");
         Intent intent = PaymentActivity.newIntent(MainActivity.this);
         intent.putExtra("whatToOpen", whatToOpen);
         startActivity(intent);
-        finish();
     }
 
     @Override

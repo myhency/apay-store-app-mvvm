@@ -20,6 +20,7 @@ import com.autoever.apay_store_app.ui.main.MainActivity;
 import com.autoever.apay_store_app.ui.main.home.HomeFragmentProvider;
 import com.autoever.apay_store_app.ui.payment.PaymentActivity;
 import com.autoever.apay_store_app.ui.payment.cancel.CancelFragmentProvider;
+import com.autoever.apay_store_app.ui.payment.cancel.detail.CancelDetailFragmentProvider;
 import com.autoever.apay_store_app.ui.payment.confirm.PriceConfirmFragment;
 import com.autoever.apay_store_app.ui.payment.confirm.PriceConfirmFragmentProvider;
 import com.autoever.apay_store_app.ui.payment.price.PriceFragment;
@@ -54,7 +55,8 @@ public abstract class ActivityBuilder {
             PriceFragmentProvider.class,
             PriceConfirmFragmentProvider.class,
             ReceiptFragmentProvider.class,
-            CancelFragmentProvider.class
+            CancelFragmentProvider.class,
+            CancelDetailFragmentProvider.class
     })
     abstract PaymentActivity bindPaymentActivity();
 

@@ -47,6 +47,7 @@ public class PaymentViewModel extends BaseViewModel<PaymentNavigator> {
         .observeOn(getSchedulerProvider().ui())
         .subscribe(paymentReadyUserDynamicResponse -> {
             Log.d("debug", "paymentReadyUserDynamicResponse");
+            setIsLoading(false);
             doPaymentDo(
                     paymentReadyUserDynamicResponse.getData().getUserId(),
                     paymentReadyUserDynamicResponse.getData().getStoreId(),
@@ -55,6 +56,7 @@ public class PaymentViewModel extends BaseViewModel<PaymentNavigator> {
                     paymentReadyUserDynamicResponse.getData().getPaymentId(),
                     paymentReadyUserDynamicResponse.getData().getIdentifier());
         }, throwable -> {
+            setIsLoading(false);
             getNavigator().handleError(throwable);
         }));
     }

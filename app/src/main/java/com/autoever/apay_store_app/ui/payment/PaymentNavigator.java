@@ -15,4 +15,6 @@ public interface PaymentNavigator {
     void openReceiptFragment(String storeName, Date createdDate, int amount, int userBalance);
 
     void openCancelFragment();
+
+    void openCancelDetailFragment(long paymentId);
 }
