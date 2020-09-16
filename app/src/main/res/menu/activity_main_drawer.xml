@@ -12,7 +12,7 @@
             android:title="정산하기" />
         <item
             android:id="@+id/nav_charge"
-            android:title="충전하기" />
+            android:title="머니 충전" />
         <item
             android:id="@+id/nav_payment_cancel"
             android:title="결제취소" />
