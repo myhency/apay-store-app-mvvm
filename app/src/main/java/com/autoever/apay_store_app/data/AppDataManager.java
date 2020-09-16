@@ -11,6 +11,9 @@ import com.autoever.apay_store_app.data.model.api.CardUseDetailResponse;
 import com.autoever.apay_store_app.data.model.api.CardUseHistoryResponse;
 import com.autoever.apay_store_app.data.model.api.ChargeReadyRequest;
 import com.autoever.apay_store_app.data.model.api.ChargeReadyResponse;
+import com.autoever.apay_store_app.data.model.api.FindLoginIdRequest;
+import com.autoever.apay_store_app.data.model.api.FindLoginIdResponse;
+import com.autoever.apay_store_app.data.model.api.LoginIdDuplicationCheckResponse;
 import com.autoever.apay_store_app.data.model.api.LoginRequest;
 import com.autoever.apay_store_app.data.model.api.LoginResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentDetailResponse;
@@ -26,6 +29,8 @@ import com.autoever.apay_store_app.data.model.api.PaymentRefundDoRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundDoResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundReadyRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundReadyResponse;
+import com.autoever.apay_store_app.data.model.api.ResetPasswordRequest;
+import com.autoever.apay_store_app.data.model.api.ResetPasswordResponse;
 import com.autoever.apay_store_app.data.model.api.UserRegisterRequest;
 import com.autoever.apay_store_app.data.model.api.UserRegisterResponse;
 import com.autoever.apay_store_app.data.model.db.User;
@@ -125,6 +130,17 @@ public class AppDataManager implements DataManager {
 //        mRepoService.getRepoServiceInterceptor().setSessionToken(accessToken);
     }
 
+    @Override
+    public void setEasyPassword(String easyPassword) {
+        mPreferencesHelper.setEasyPassword(easyPassword);
+    }
+
+    @Override
+    public String getEasyPassword() {
+        return mPreferencesHelper.getEasyPassword();
+    }
+
+
 //    @Override
 //    public RepoServiceInterceptor getRepoServiceInterceptor() {
 //        return mRepoService.getRepoServiceInterceptor();
@@ -208,6 +224,21 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<PaymentDetailResponse> doGetPaymentDetailCall(Long paymentId, String target) {
         return mRepoService.doGetPaymentDetailCall(paymentId, target);
+    }
+
+    @Override
+    public Single<ResetPasswordResponse> doResetPasswordCall(ResetPasswordRequest resetPasswordRequest) {
+        return mRepoService.doResetPasswordCall(resetPasswordRequest);
+    }
+
+    @Override
+    public Single<FindLoginIdResponse> doFindLoginIdCall(FindLoginIdRequest findLoginIdRequest) {
+        return mRepoService.doFindLoginIdCall(findLoginIdRequest);
+    }
+
+    @Override
+    public Single<LoginIdDuplicationCheckResponse> doLoginIdDuplicationCheckCall(String loginId) {
+        return mRepoService.doLoginIdDuplicationCheckCall(loginId);
     }
 
 }

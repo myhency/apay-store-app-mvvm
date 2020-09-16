@@ -8,9 +8,12 @@ public interface RegisterNavigator {
 
     void openDialog();
 
+    void openLoginActivity();
+
     void handleError(Throwable throwable);
 
     void openPasswordFragment();
 
-    void openMainActivity();
+    void setupLoginIdTextFieldHelperText(boolean result);
+
 }

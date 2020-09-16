@@ -89,7 +89,7 @@ public class TermsOfServiceFragment extends BaseFragment<FragmentTermsOfServiceB
         mFragmentTermsOfServiceBinding.agreeTerm03Checkbox.setOnCheckedChangeListener(checkBoxListener);
         mFragmentTermsOfServiceBinding.agreeTerm04Checkbox.setOnCheckedChangeListener(checkBoxListener);
 
-        mFragmentTermsOfServiceBinding.joinTermsNextButton.setOnClickListener(v -> {
+        mFragmentTermsOfServiceBinding.finishTextview.setOnClickListener(v -> {
             CheckBox agreeAll = mFragmentTermsOfServiceBinding.agreeAllCheckbox,
                     agreeTerm01 = mFragmentTermsOfServiceBinding.agreeTerm01Checkbox,
                     agreeTerm02 = mFragmentTermsOfServiceBinding.agreeTerm02Checkbox,
@@ -136,6 +136,11 @@ public class TermsOfServiceFragment extends BaseFragment<FragmentTermsOfServiceB
     }
 
     @Override
+    public void openLoginActivity() {
+
+    }
+
+    @Override
     public void handleError(Throwable throwable) {
 
     }
@@ -146,7 +151,7 @@ public class TermsOfServiceFragment extends BaseFragment<FragmentTermsOfServiceB
     }
 
     @Override
-    public void openMainActivity() {
+    public void setupLoginIdTextFieldHelperText(boolean result) {
 
     }
 
@@ -166,66 +171,66 @@ public class TermsOfServiceFragment extends BaseFragment<FragmentTermsOfServiceB
             if (buttonView == agreeAll) {
                 if (isChecked) {
                     //"모두 동의합니다" 버튼을 눌렀을 때는 모든 약관동의 버튼에 체크한다.
-                    agreeAll.setButtonDrawable(R.drawable.icon_check);
+//                    agreeAll.setButtonDrawable(R.drawable.icon_check);
                     for (CheckBox checkBox : agreeTermCheckBoxList) {
-                        checkBox.setButtonDrawable(R.drawable.icon_check);
+//                        checkBox.setButtonDrawable(R.drawable.icon_check);
                         checkBox.setChecked(true);
                     }
                 } else {
                     //"모두 동의합니다" 버튼을 해제했을 때는 모든 약관동의 버튼에 체크해제한다.
-                    agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
+//                    agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
                     for (CheckBox checkBox : agreeTermCheckBoxList) {
-                        checkBox.setButtonDrawable(R.drawable.icon_check_dis);
+//                        checkBox.setButtonDrawable(R.drawable.icon_check_dis);
                         checkBox.setChecked(false);
                     }
                 }
             } else if (buttonView == agreeTerm01) {
                 if (isChecked) {
-                    agreeTerm01.setButtonDrawable(R.drawable.icon_check);
+//                    agreeTerm01.setButtonDrawable(R.drawable.icon_check);
                     if (!agreeTerm02.isChecked() || !agreeTerm03.isChecked() || !agreeTerm04.isChecked()) {
-                        agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
+//                        agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
                     } else if (agreeTerm02.isChecked() && agreeTerm03.isChecked() && agreeTerm04.isChecked()) {
-                        agreeAll.setButtonDrawable(R.drawable.icon_check);
+//                        agreeAll.setButtonDrawable(R.drawable.icon_check);
                     }
                 } else {
-                    agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
-                    agreeTerm01.setButtonDrawable(R.drawable.icon_check_dis);
+//                    agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
+//                    agreeTerm01.setButtonDrawable(R.drawable.icon_check_dis);
                 }
             } else if (buttonView == agreeTerm02) {
                 if (isChecked) {
-                    agreeTerm02.setButtonDrawable(R.drawable.icon_check);
+//                    agreeTerm02.setButtonDrawable(R.drawable.icon_check);
                     if (!agreeTerm01.isChecked() || !agreeTerm03.isChecked() || !agreeTerm04.isChecked()) {
-                        agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
+//                        agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
                     } else if (agreeTerm01.isChecked() && agreeTerm03.isChecked() && agreeTerm04.isChecked()) {
-                        agreeAll.setButtonDrawable(R.drawable.icon_check);
+//                        agreeAll.setButtonDrawable(R.drawable.icon_check);
                     }
                 } else {
-                    agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
-                    agreeTerm02.setButtonDrawable(R.drawable.icon_check_dis);
+//                    agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
+//                    agreeTerm02.setButtonDrawable(R.drawable.icon_check_dis);
                 }
             } else if (buttonView == agreeTerm03) {
                 if (isChecked) {
-                    agreeTerm03.setButtonDrawable(R.drawable.icon_check);
+//                    agreeTerm03.setButtonDrawable(R.drawable.icon_check);
                     if (!agreeTerm01.isChecked() || !agreeTerm02.isChecked() || !agreeTerm04.isChecked()) {
-                        agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
+//                        agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
                     } else if (agreeTerm01.isChecked() && agreeTerm02.isChecked() && agreeTerm04.isChecked()) {
-                        agreeAll.setButtonDrawable(R.drawable.icon_check);
+//                        agreeAll.setButtonDrawable(R.drawable.icon_check);
                     }
                 } else {
-                    agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
-                    agreeTerm03.setButtonDrawable(R.drawable.icon_check_dis);
+//                    agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
+//                    agreeTerm03.setButtonDrawable(R.drawable.icon_check_dis);
                 }
             } else if (buttonView == agreeTerm04) {
                 if (isChecked) {
-                    agreeTerm04.setButtonDrawable(R.drawable.icon_check);
+//                    agreeTerm04.setButtonDrawable(R.drawable.icon_check);
                     if (!agreeTerm01.isChecked() || !agreeTerm02.isChecked() || !agreeTerm03.isChecked()) {
-                        agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
+//                        agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
                     } else if (agreeTerm01.isChecked() && agreeTerm02.isChecked() && agreeTerm03.isChecked()) {
-                        agreeAll.setButtonDrawable(R.drawable.icon_check);
+//                        agreeAll.setButtonDrawable(R.drawable.icon_check);
                     }
                 } else {
-                    agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
-                    agreeTerm04.setButtonDrawable(R.drawable.icon_check_dis);
+//                    agreeAll.setButtonDrawable(R.drawable.icon_check_dis);
+//                    agreeTerm04.setButtonDrawable(R.drawable.icon_check_dis);
                 }
             }
         }

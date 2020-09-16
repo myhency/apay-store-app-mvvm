@@ -15,6 +15,9 @@ import com.autoever.apay_store_app.ui.payment.receipt.ReceiptViewModel;
 import com.autoever.apay_store_app.ui.payment.scanner.CustomScannerViewModel;
 import com.autoever.apay_store_app.ui.splash.SplashViewModel;
 import com.autoever.apay_store_app.ui.user.login.LoginViewModel;
+import com.autoever.apay_store_app.ui.user.login.find.FindMyIdViewModel;
+import com.autoever.apay_store_app.ui.user.login.init.InitMyPasswordViewModel;
+import com.autoever.apay_store_app.ui.user.register.RegisterViewModel;
 import com.autoever.apay_store_app.utils.rx.SchedulerProvider;
 
 import javax.inject.Inject;
@@ -54,6 +57,12 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return (T) new CancelViewModel(dataManager, schedulerProvider);
         } else if (modelClass.isAssignableFrom(CancelDetailViewModel.class)) {
             return (T) new CancelDetailViewModel(dataManager, schedulerProvider);
+        } else if (modelClass.isAssignableFrom(FindMyIdViewModel.class)) {
+            return (T) new FindMyIdViewModel(dataManager, schedulerProvider);
+        } else if (modelClass.isAssignableFrom(InitMyPasswordViewModel.class)) {
+            return (T) new InitMyPasswordViewModel(dataManager, schedulerProvider);
+        } else if (modelClass.isAssignableFrom(RegisterViewModel.class)) {
+            return (T) new RegisterViewModel(dataManager, schedulerProvider);
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class " + modelClass.getName());

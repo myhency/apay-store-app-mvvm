@@ -28,10 +28,12 @@ public class LoginViewModel extends BaseViewModel<LoginNavigator> {
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(loginResponse -> {
+                    setIsLoading(false);
                     Log.d("debug", "loginResponse token : " + loginResponse.getData().getJwtToken());
                     Log.d("debug", "loginResponse userId : " + loginResponse.getData().getStoreId());
                     getNavigator().openMainActivity();
                 }, throwable -> {
+                    setIsLoading(false);
                     getNavigator().handleError(throwable);
                 }));
     }

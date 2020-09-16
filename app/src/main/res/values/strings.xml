@@ -41,4 +41,10 @@
     </string-array>
     <string name="title_activity_card_use_detail">CardUseDetailActivity</string>
     <string name="refresh"><u>새로고침</u></string>
+    <string name="skip">건너뛰기</string>
+    <string name="input_id_for_register">아이디 입력 <font fgcolor="#FF0000">*</font></string>
+    <string name="input_password_for_register">패스워드 입력 <font fgcolor="#FF0000">*</font></string>
+    <string name="input_password_confirm_for_register">패스워드 확인 <font fgcolor="#FF0000">*</font></string>
+    <string name="input_phone_number_for_register">휴대폰 인증 <font fgcolor="#FF0000">*</font></string>
+
 </resources>

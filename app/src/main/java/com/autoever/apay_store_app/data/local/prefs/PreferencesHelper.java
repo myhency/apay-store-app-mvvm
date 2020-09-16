@@ -15,4 +15,8 @@ public interface PreferencesHelper {
     String getAccessToken();
 
     void setAccessToken(String accessToken);
+
+    void setEasyPassword(String easyPassword);
+
+    String getEasyPassword();
 }

@@ -6,5 +6,9 @@ public interface LoginNavigator {
 
     void openRegisterActivity();
 
+    void openFindMyIdActivity();
+
+    void openInitMyPasswordActivity();
+
     void handleError(Throwable throwable);
 }

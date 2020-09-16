@@ -6,6 +6,9 @@ import com.autoever.apay_store_app.data.model.api.CardUseDetailResponse;
 import com.autoever.apay_store_app.data.model.api.CardUseHistoryResponse;
 import com.autoever.apay_store_app.data.model.api.ChargeReadyRequest;
 import com.autoever.apay_store_app.data.model.api.ChargeReadyResponse;
+import com.autoever.apay_store_app.data.model.api.FindLoginIdRequest;
+import com.autoever.apay_store_app.data.model.api.FindLoginIdResponse;
+import com.autoever.apay_store_app.data.model.api.LoginIdDuplicationCheckResponse;
 import com.autoever.apay_store_app.data.model.api.LoginRequest;
 import com.autoever.apay_store_app.data.model.api.LoginResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentDetailResponse;
@@ -21,6 +24,8 @@ import com.autoever.apay_store_app.data.model.api.PaymentRefundDoRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundDoResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundReadyRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundReadyResponse;
+import com.autoever.apay_store_app.data.model.api.ResetPasswordRequest;
+import com.autoever.apay_store_app.data.model.api.ResetPasswordResponse;
 import com.autoever.apay_store_app.data.model.api.UserRegisterRequest;
 import com.autoever.apay_store_app.data.model.api.UserRegisterResponse;
 
@@ -110,4 +115,18 @@ public interface RepoService {
 
     @GET("payment/{paymentId}")
     Single<PaymentDetailResponse> doGetPaymentDetailCall(@Path("paymentId") Long paymentId, @Query("target") String target);
+
+    @PUT("store/resetPassword")
+    @Headers("No-Authentication: true")
+    Single<ResetPasswordResponse> doResetPasswordCall(@Body ResetPasswordRequest resetPasswordRequest);
+
+    @POST("store/findLoginId")
+    @Headers("No-Authentication: true")
+    Single<FindLoginIdResponse> doFindLoginIdCall(@Body FindLoginIdRequest findLoginIdRequest);
+
+    @GET("store/loginId/{loginId}")
+    @Headers("No-Authentication: true")
+    Single<LoginIdDuplicationCheckResponse> doLoginIdDuplicationCheckCall(
+            @Path("loginId") String loginId
+    );
 }

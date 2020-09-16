@@ -14,6 +14,7 @@ public class AppPreferencesHelper implements PreferencesHelper {
     private static final String PREF_KEY_ACCESS_TOKEN = "PREF_KEY_ACCESS_TOKEN";
     private static final String PREF_KEY_USER_LOGGED_IN_MODE = "PREF_KEY_USER_LOGGED_IN_MODE";
     private static final String PREF_KEY_CURRENT_USER_ID = "PREF_KEY_CURRENT_USER_ID";
+    private static final String PREF_KEY_EASY_PASSWORD = "PREF_KEY_EASY_PASSWORD";
 
     private final SharedPreferences mPrefs;
 
@@ -53,5 +54,15 @@ public class AppPreferencesHelper implements PreferencesHelper {
     @Override
     public void setAccessToken(String accessToken) {
         mPrefs.edit().putString(PREF_KEY_ACCESS_TOKEN, accessToken).apply();
+    }
+
+    @Override
+    public void setEasyPassword(String easyPassword) {
+        mPrefs.edit().putString(PREF_KEY_EASY_PASSWORD, easyPassword).apply();
+    }
+
+    @Override
+    public String getEasyPassword() {
+        return mPrefs.getString(PREF_KEY_EASY_PASSWORD, null);
     }
 }

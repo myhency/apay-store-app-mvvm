@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -13,235 +14,258 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_guide_line"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="42dp"
-            android:paddingTop="65dp">
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
 
-            <CheckBox
-                android:id="@+id/agree_all_checkbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/icon_check_dis"
-                android:button="@null" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/spoqa_han_sans_regular"
-                android:text="@string/jointerms_text_02"
-                android:textColor="#000000"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/left_guide_line"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="42dp"
-            android:paddingTop="20dp"
-            android:paddingRight="42dp"
-            android:paddingBottom="20dp">
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layerType="software"
-                android:src="@drawable/dashed_line" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_layout_01"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
-            android:orientation="horizontal"
-            android:paddingLeft="42dp"
-            android:paddingRight="42dp">
+            bind:layout_constraintBottom_toBottomOf="parent"
+            bind:layout_constraintEnd_toEndOf="@id/right_guide_line"
+            bind:layout_constraintStart_toStartOf="@id/left_guide_line"
+            bind:layout_constraintTop_toTopOf="parent"
+            bind:layout_constraintVertical_bias="0.03">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toTopOf="parent">
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/agree_all_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/jointerms_text_02" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/sep_line"
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="20dp"
+            android:layerType="software"
+            android:src="@drawable/dashed_line"
+            app:layout_constraintVertical_bias="0"
+            bind:layout_constraintBottom_toBottomOf="parent"
+            bind:layout_constraintEnd_toEndOf="@id/right_guide_line"
+            bind:layout_constraintStart_toStartOf="@id/left_guide_line"
+            bind:layout_constraintTop_toBottomOf="@id/const_layout_01" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_layout_02"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintVertical_bias="0"
+            bind:layout_constraintBottom_toBottomOf="parent"
+            bind:layout_constraintEnd_toEndOf="@id/right_guide_line"
+            bind:layout_constraintStart_toStartOf="@id/left_guide_line"
+            bind:layout_constraintTop_toBottomOf="@id/sep_line">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintVertical_bias="0.0"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/agree_term01_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/icon_check_dis"
-                    android:button="@null" />
+                    android:text="@string/jointerms_text_03" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/spoqa_han_sans_regular"
-                    android:text="@string/jointerms_text_03"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/agree_term01_detail"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/arrow_r" />
+
+                </RelativeLayout>
 
             </LinearLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/agree_term01_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_weight="1"
-                android:src="@drawable/arrow_r" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_layout_03"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
-            android:orientation="horizontal"
-            android:paddingLeft="42dp"
-            android:paddingRight="42dp">
+            android:layout_marginTop="10dp"
+            app:layout_constraintVertical_bias="0"
+            bind:layout_constraintBottom_toBottomOf="parent"
+            bind:layout_constraintEnd_toEndOf="@id/right_guide_line"
+            bind:layout_constraintStart_toStartOf="@id/left_guide_line"
+            bind:layout_constraintTop_toBottomOf="@id/const_layout_02">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:layout_constraintVertical_bias="0.0"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toTopOf="parent">
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/agree_term02_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/icon_check_dis"
-                    android:button="@null" />
+                    android:text="@string/jointerms_text_03" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/spoqa_han_sans_regular"
-                    android:text="@string/jointerms_text_03"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/agree_term02_detail"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/arrow_r" />
+
+                </RelativeLayout>
 
             </LinearLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/agree_term02_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_weight="1"
-                android:src="@drawable/arrow_r" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_layout_04"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
-            android:orientation="horizontal"
-            android:paddingLeft="42dp"
-            android:paddingRight="42dp">
+            android:layout_marginTop="10dp"
+            app:layout_constraintVertical_bias="0"
+            bind:layout_constraintBottom_toBottomOf="parent"
+            bind:layout_constraintEnd_toEndOf="@id/right_guide_line"
+            bind:layout_constraintStart_toStartOf="@id/left_guide_line"
+            bind:layout_constraintTop_toBottomOf="@id/const_layout_03">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:layout_constraintVertical_bias="0.0"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toTopOf="parent">
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/agree_term03_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/icon_check_dis"
-                    android:button="@null" />
+                    android:text="@string/jointerms_text_04" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/spoqa_han_sans_regular"
-                    android:text="@string/jointerms_text_03"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/agree_term03_detail"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/arrow_r" />
+
+                </RelativeLayout>
 
             </LinearLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/agree_term03_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_weight="1"
-                android:src="@drawable/arrow_r" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_layout_05"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
-            android:orientation="horizontal"
-            android:paddingLeft="42dp"
-            android:paddingRight="42dp">
+            android:layout_marginTop="10dp"
+            app:layout_constraintVertical_bias="0"
+            bind:layout_constraintBottom_toBottomOf="parent"
+            bind:layout_constraintEnd_toEndOf="@id/right_guide_line"
+            bind:layout_constraintStart_toStartOf="@id/left_guide_line"
+            bind:layout_constraintTop_toBottomOf="@id/const_layout_04">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:layout_constraintVertical_bias="0.0"
+                bind:layout_constraintBottom_toBottomOf="parent"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toTopOf="parent">
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/agree_term04_checkbox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/icon_check_dis"
-                    android:button="@null" />
+                    android:text="@string/jointerms_text_04" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/spoqa_han_sans_regular"
-                    android:text="@string/jointerms_text_04"
-                    android:textColor="#000000"
-                    android:textSize="16sp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/agree_term04_detail"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/arrow_r" />
+
+                </RelativeLayout>
 
             </LinearLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/agree_term04_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_weight="1"
-                android:src="@drawable/arrow_r" />
-        </RelativeLayout>
-
-        <RelativeLayout
+        <TextView
+            android:id="@+id/finish_textview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="52dp"
+            android:layout_alignParentBottom="true"
+            android:background="#304db9"
+            android:fontFamily="@font/spoqa_han_sans_regular"
+            android:gravity="center"
+            android:text="다음"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
-            <TextView
-                android:id="@+id/join_terms_next_button"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_alignParentBottom="true"
-                android:background="#304db9"
-                android:fontFamily="@font/spoqa_han_sans_regular"
-                android:gravity="center"
-                android:text="다음"
-                android:textColor="#ffffff"
-                android:textSize="18sp" />
-        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
 </layout>
