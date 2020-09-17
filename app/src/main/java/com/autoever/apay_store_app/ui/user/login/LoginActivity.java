@@ -66,9 +66,12 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
     }
 
     private void setup() {
-        mActivityLoginBinding.registerButton.setOnClickListener(v -> {
-            openRegisterActivity();
-        });
+        /**
+         * TODO. 가맹점 회원가입은  현재 메일로 신청받고 가맹점 코드 등록 발급을 하게 되어 있습니다. 추후 운영자 웹에서 승인 발급 개발 예정임(3단계)
+         */
+//        mActivityLoginBinding.registerButton.setOnClickListener(v -> {
+//            openRegisterActivity();
+//        });
 
         mActivityLoginBinding.loginButton.setOnClickListener(v -> {
             hideKeyboard();

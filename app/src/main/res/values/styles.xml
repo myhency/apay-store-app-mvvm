@@ -4,10 +4,13 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:windowContentOverlay">@null</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@color/colorOnPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/borderColor</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="controlBackground">@color/colorWhite</item>
         <item name="android:windowBackground">@color/bg_color</item>
+        <item name="android:textColorSecondary">@color/borderColor</item>
         <item name="drawerArrowStyle">@style/MaterialDrawer.DrawerArrowStyle</item>
     </style>
 

@@ -17,4 +17,6 @@ public interface PaymentNavigator {
     void openCancelFragment();
 
     void openCancelDetailFragment(long paymentId);
+
+    void getQrStoreDynamicData(String parsedQrString);
 }

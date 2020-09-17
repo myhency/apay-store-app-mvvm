@@ -209,6 +209,11 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
     }
 
     @Override
+    public void getQrStoreDynamicData(String parsedQrString) {
+
+    }
+
+    @Override
     public void doPaymentReady() {
         Log.d("debug", "doPaymentReady");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());

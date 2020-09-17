@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,9 +47,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentDispatchingAndroidInjector;
-
-
-
 
     private MainViewModel mMainViewModel;
     private ActivityMainBinding mActivityMainBinding;
@@ -180,7 +178,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 .beginTransaction()
                 .add(R.id.root_layout, HomeFragment.newInstance(), HomeFragment.TAG)
                 .addToBackStack(HomeFragment.TAG)
-                .commitAllowingStateLoss();
+                .commit();
     }
 
     @Override
@@ -202,5 +200,16 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {
         return fragmentDispatchingAndroidInjector;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mActivityMainBinding.drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+            mActivityMainBinding.drawerLayout.closeDrawer(Gravity.LEFT);
+        } else {
+            super.onBackPressed();
+            Log.d("debug", "MainActivity backPressed");
+            finish();
+        }
     }
 }

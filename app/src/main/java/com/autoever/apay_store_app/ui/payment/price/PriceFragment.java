@@ -89,25 +89,25 @@ public class PriceFragment extends BaseFragment<FragmentPriceBinding, PriceViewM
         //터치이벤트를 소모해서 키보드를 뜨지 않게 함.
         mFragmentPriceBinding.cardPaymentEdittext.setOnTouchListener((v, event) -> true);
 
-        mFragmentPriceBinding.numericKeyPad.buttonDelete.setOnClickListener(v -> {
+        mFragmentPriceBinding.buttonDelete.setOnClickListener(v -> {
             int length = mFragmentPriceBinding.cardPaymentEdittext.getText().length();
             if (length > 0)
                 mFragmentPriceBinding.cardPaymentEdittext.getText().delete(length - 1, length);
         });
 
-        mFragmentPriceBinding.numericKeyPad.button0.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("0"));
-        mFragmentPriceBinding.numericKeyPad.button1.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("1"));
-        mFragmentPriceBinding.numericKeyPad.button2.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("2"));
-        mFragmentPriceBinding.numericKeyPad.button3.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("3"));
-        mFragmentPriceBinding.numericKeyPad.button4.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("4"));
-        mFragmentPriceBinding.numericKeyPad.button5.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("5"));
-        mFragmentPriceBinding.numericKeyPad.button6.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("6"));
-        mFragmentPriceBinding.numericKeyPad.button7.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("7"));
-        mFragmentPriceBinding.numericKeyPad.button8.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("8"));
-        mFragmentPriceBinding.numericKeyPad.button9.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("9"));
-        mFragmentPriceBinding.numericKeyPad.button00.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("00"));
+        mFragmentPriceBinding.button0.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("0"));
+        mFragmentPriceBinding.button1.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("1"));
+        mFragmentPriceBinding.button2.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("2"));
+        mFragmentPriceBinding.button3.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("3"));
+        mFragmentPriceBinding.button4.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("4"));
+        mFragmentPriceBinding.button5.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("5"));
+        mFragmentPriceBinding.button6.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("6"));
+        mFragmentPriceBinding.button7.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("7"));
+        mFragmentPriceBinding.button8.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("8"));
+        mFragmentPriceBinding.button9.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("9"));
+        mFragmentPriceBinding.button00.setOnClickListener(v -> mFragmentPriceBinding.cardPaymentEdittext.append("00"));
 
-        mFragmentPriceBinding.numericKeyPad.price1000.setOnClickListener(v -> {
+        mFragmentPriceBinding.price1000.setOnClickListener(v -> {
 
             Long currentInputBalance;
             if (mFragmentPriceBinding.cardPaymentEdittext.getText().toString().equals(""))
@@ -118,7 +118,7 @@ public class PriceFragment extends BaseFragment<FragmentPriceBinding, PriceViewM
             mFragmentPriceBinding.cardPaymentEdittext.setText(String.valueOf(currentInputBalance));
         });
 
-        mFragmentPriceBinding.numericKeyPad.price5000.setOnClickListener(v -> {
+        mFragmentPriceBinding.price5000.setOnClickListener(v -> {
 
             Long currentInputBalance;
             if (mFragmentPriceBinding.cardPaymentEdittext.getText().toString().equals(""))
@@ -129,7 +129,7 @@ public class PriceFragment extends BaseFragment<FragmentPriceBinding, PriceViewM
             mFragmentPriceBinding.cardPaymentEdittext.setText(String.valueOf(currentInputBalance));
         });
 
-        mFragmentPriceBinding.numericKeyPad.price10000.setOnClickListener(v -> {
+        mFragmentPriceBinding.price10000.setOnClickListener(v -> {
 
             Long currentInputBalance;
             if (mFragmentPriceBinding.cardPaymentEdittext.getText().toString().equals(""))
@@ -140,7 +140,7 @@ public class PriceFragment extends BaseFragment<FragmentPriceBinding, PriceViewM
             mFragmentPriceBinding.cardPaymentEdittext.setText(String.valueOf(currentInputBalance));
         });
 
-        mFragmentPriceBinding.numericKeyPad.price50000.setOnClickListener(v -> {
+        mFragmentPriceBinding.price50000.setOnClickListener(v -> {
 
             Long currentInputBalance;
             if (mFragmentPriceBinding.cardPaymentEdittext.getText().toString().equals(""))

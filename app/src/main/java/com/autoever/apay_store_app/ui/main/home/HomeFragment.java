@@ -214,7 +214,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.d("debug", data.getStringExtra("shopCode"));
+//        Log.d("debug", data.getStringExtra("shopCode"));
         switch (requestCode) {
             case QR_CODE_SCANNED:
                 switch (resultCode) {
@@ -230,5 +230,10 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         }
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("debug","HomeFragment resume");
+        mHomeViewModel.loadUserBalance();
+    }
 }

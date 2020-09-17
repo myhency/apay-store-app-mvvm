@@ -29,6 +29,8 @@ import com.autoever.apay_store_app.data.model.api.PaymentRefundDoRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundDoResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundReadyRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundReadyResponse;
+import com.autoever.apay_store_app.data.model.api.QrStoreDynamicRequest;
+import com.autoever.apay_store_app.data.model.api.QrStoreDynamicResponse;
 import com.autoever.apay_store_app.data.model.api.ResetPasswordRequest;
 import com.autoever.apay_store_app.data.model.api.ResetPasswordResponse;
 import com.autoever.apay_store_app.data.model.api.UserRegisterRequest;
@@ -202,7 +204,7 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<BalanceResponse> doGetBalanceCall(int tokenSystemId, int subscriberId) {
+    public Single<BalanceResponse> doGetBalanceCall(Long tokenSystemId, Long subscriberId) {
         return mRepoService.doGetBalanceCall(tokenSystemId, subscriberId);
     }
 
@@ -239,6 +241,11 @@ public class AppDataManager implements DataManager {
     @Override
     public Single<LoginIdDuplicationCheckResponse> doLoginIdDuplicationCheckCall(String loginId) {
         return mRepoService.doLoginIdDuplicationCheckCall(loginId);
+    }
+
+    @Override
+    public Single<QrStoreDynamicResponse> doQrStoreDynamicCall(QrStoreDynamicRequest qrStoreDynamicRequest) {
+        return mRepoService.doQrStoreDynamicCall(qrStoreDynamicRequest);
     }
 
 }

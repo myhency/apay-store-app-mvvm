@@ -38,7 +38,7 @@
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
-                        android:background="?attr/colorPrimary"
+                        android:background="?attr/controlBackground"
                         app:subtitleTextColor="@color/colorblack"
                         app:title="@string/app_name"
                         app:titleTextColor="@color/black_effective"
@@ -68,7 +68,7 @@
 
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/nav_view"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:fitsSystemWindows="true"

@@ -25,7 +25,7 @@ public class PriceConfirmViewModel extends BaseViewModel<PriceConfirmNavigator> 
         setIsLoading(true);
         getCompositeDisposable().add(getDataManager()
                 //TODO. subscriberId 는 어떤걸 쓸지??
-                .doGetBalanceCall(1, 4)
+                .doGetBalanceCall(1L, getDataManager().getCurrentUserId())
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(balanceResponse -> {

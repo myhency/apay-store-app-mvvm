@@ -24,6 +24,8 @@ import com.autoever.apay_store_app.data.model.api.PaymentRefundDoRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundDoResponse;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundReadyRequest;
 import com.autoever.apay_store_app.data.model.api.PaymentRefundReadyResponse;
+import com.autoever.apay_store_app.data.model.api.QrStoreDynamicRequest;
+import com.autoever.apay_store_app.data.model.api.QrStoreDynamicResponse;
 import com.autoever.apay_store_app.data.model.api.ResetPasswordRequest;
 import com.autoever.apay_store_app.data.model.api.ResetPasswordResponse;
 import com.autoever.apay_store_app.data.model.api.UserRegisterRequest;
@@ -40,29 +42,29 @@ import retrofit2.http.Query;
 
 public interface RepoService {
 
-    @POST("payment/ready")
+    @POST("api/v2/payment/ready")
     Single<PaymentReadyResponse> doPaymentReadyCall(@Body PaymentReadyRequest paymentReadyRequest);
 
-    @PUT("payment/do")
+    @PUT("api/v2/payment/do")
     Single<PaymentDoResponse> doPaymentDoCall(@Body PaymentDoRequest paymentDoRequest);
 
-    @POST("tokenSystem/charge/ready")
+    @POST("api/v2/tokenSystem/charge/ready")
     Single<ChargeReadyResponse> doChargeReadyCall(@Body ChargeReadyRequest chargeReadyRequest);
 
-    @POST("user/tokenSystem/1")
+    @POST("api/v2/user/tokenSystem/1")
     Single<UserRegisterResponse> doUserRegisterCall(@Body UserRegisterRequest userRegisterRequest);
 
-    @POST("store/login")
+    @POST("api/v2/store/login")
     @Headers("No-Authentication: true")
     Single<LoginResponse> doLoginCall(@Body LoginRequest loginRequest);
 
-    @GET("authTest/hello")
+    @GET("api/v2/authTest/hello")
     Single<AuthTestResponse> doAuthTextCall();
 
-    @GET("tokenSystem/1/tokenHistories?subscriberId=4")
+    @GET("api/v2/tokenSystem/1/tokenHistories?subscriberId=4")
     Single<CardUseHistoryResponse> doHistoryTestCall();
 
-    @GET("user/tokenSystem/{tokenSystemId}/paymentHistories")
+    @GET("api/v2/user/tokenSystem/{tokenSystemId}/paymentHistories")
     Single<CardUseHistoryResponse> doCardUseHistoryCall(
             @Path("tokenSystemId") int tokenSystemId,
             @Query("userId") int userId,
@@ -72,16 +74,16 @@ public interface RepoService {
             @Query("filter") String filter
     );
 
-    @GET("paymentHistory/{paymentHistoryId}")
+    @GET("api/v2/paymentHistory/{paymentHistoryId}")
     Single<CardUseDetailResponse> doCardUseDetailCall(
             @Path("paymentHistoryId") int paymentHistoryId,
             @Query("target") String target
     );
 
-    @PUT("payment/refund/ready")
+    @PUT("api/v2/payment/refund/ready")
     Single<PaymentRefundReadyResponse> doPaymentRefundReadyCall(@Body PaymentRefundReadyRequest paymentRefundReadyRequest);
 
-    @GET("store/tokenSystem/{tokenSystemId}/paymentHistories")
+    @GET("api/v2/store/tokenSystem/{tokenSystemId}/paymentHistories")
     Single<PaymentHistoryResponse> doPaymentHistoryCall(
             @Path("tokenSystemId") int tokenSystemId,
             @Query("storeId") int storeId,
@@ -91,17 +93,17 @@ public interface RepoService {
             @Query("pageSize") int pageSize
     );
 
-    @GET("tokenSystem/{tokenSystemId}/balance")
+    @GET("api/v2/tokenSystem/{tokenSystemId}/balance")
     Single<BalanceResponse> doGetBalanceCall(
-            @Path("tokenSystemId") int tokenSystemId,
-            @Query("subscriberId") int subscriberId
+            @Path("tokenSystemId") Long tokenSystemId,
+            @Query("subscriberId") Long subscriberId
     );
 
-    @POST("payment/ready/userDynamic")
+    @POST("api/v2/payment/ready/userDynamic")
     @Headers("No-Authentication: true")
     Single<PaymentReadyUserDynamicResponse> doPaymentReadyUserDynamic(@Body PaymentReadyUserDynamicRequest paymentReadyUserDynamicRequest);
 
-    @GET("store/tokenSystem/{tokenSystemId}/payment")
+    @GET("api/v2/store/tokenSystem/{tokenSystemId}/payment")
     Single<PaymentListResponse> doGetPaymentListCall(
             @Path("tokenSystemId") int tokenSystemId,
             @Query("storeId") int storeId,
@@ -110,23 +112,27 @@ public interface RepoService {
             @Query("pageSize") int pageSize
     );
 
-    @PUT("payment/refund/do")
+    @PUT("api/v2/payment/refund/do")
     Single<PaymentRefundDoResponse> doPaymentRefundDoCall(@Body PaymentRefundDoRequest paymentRefundDoRequest);
 
-    @GET("payment/{paymentId}")
+    @GET("api/v2/payment/{paymentId}")
     Single<PaymentDetailResponse> doGetPaymentDetailCall(@Path("paymentId") Long paymentId, @Query("target") String target);
 
-    @PUT("store/resetPassword")
+    @PUT("api/v2/store/resetPassword")
     @Headers("No-Authentication: true")
     Single<ResetPasswordResponse> doResetPasswordCall(@Body ResetPasswordRequest resetPasswordRequest);
 
-    @POST("store/findLoginId")
+    @POST("api/v2/store/findLoginId")
     @Headers("No-Authentication: true")
     Single<FindLoginIdResponse> doFindLoginIdCall(@Body FindLoginIdRequest findLoginIdRequest);
 
-    @GET("store/loginId/{loginId}")
+    @GET("api/v2/store/loginId/{loginId}")
     @Headers("No-Authentication: true")
     Single<LoginIdDuplicationCheckResponse> doLoginIdDuplicationCheckCall(
             @Path("loginId") String loginId
     );
+
+    @POST("qr/storeDynamic")
+    Single<QrStoreDynamicResponse> doQrStoreDynamicCall(@Body QrStoreDynamicRequest qrStoreDynamicRequest);
+
 }
