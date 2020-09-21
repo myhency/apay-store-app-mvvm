@@ -5,6 +5,8 @@ import com.autoever.apay_store_app.ui.main.home.HomeFragmentProvider;
 import com.autoever.apay_store_app.ui.payment.PaymentActivity;
 import com.autoever.apay_store_app.ui.payment.cancel.CancelFragmentProvider;
 import com.autoever.apay_store_app.ui.payment.cancel.detail.CancelDetailFragmentProvider;
+import com.autoever.apay_store_app.ui.payment.cancel.receipt.CancelReceiptFragment;
+import com.autoever.apay_store_app.ui.payment.cancel.receipt.CancelReceiptFragmentProvider;
 import com.autoever.apay_store_app.ui.payment.confirm.PriceConfirmFragmentProvider;
 import com.autoever.apay_store_app.ui.payment.price.PriceFragmentProvider;
 import com.autoever.apay_store_app.ui.payment.receipt.ReceiptFragmentProvider;
@@ -47,7 +49,8 @@ public abstract class ActivityBuilder {
             PriceConfirmFragmentProvider.class,
             ReceiptFragmentProvider.class,
             CancelFragmentProvider.class,
-            CancelDetailFragmentProvider.class
+            CancelDetailFragmentProvider.class,
+            CancelReceiptFragmentProvider.class
     })
     abstract PaymentActivity bindPaymentActivity();
 

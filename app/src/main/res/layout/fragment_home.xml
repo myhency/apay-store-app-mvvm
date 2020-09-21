@@ -115,20 +115,31 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:gravity="center|center_horizontal"
+            android:layout_marginHorizontal="20dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView4">
 
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/tx_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp"
                 android:scrollbars="none"
                 app:adapter="@{viewModel.paymentHistoryContentLiveData}"
                 tools:listitem="@layout/item_payment_history"/>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         </LinearLayout>
 

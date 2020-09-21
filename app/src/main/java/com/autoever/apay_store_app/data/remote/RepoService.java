@@ -85,8 +85,8 @@ public interface RepoService {
 
     @GET("api/v2/store/tokenSystem/{tokenSystemId}/paymentHistories")
     Single<PaymentHistoryResponse> doPaymentHistoryCall(
-            @Path("tokenSystemId") int tokenSystemId,
-            @Query("storeId") int storeId,
+            @Path("tokenSystemId") Long tokenSystemId,
+            @Query("storeId") Long storeId,
             @Query("date") String date,
             @Query("filter") String filter,
             @Query("pageNo") int pageNo,

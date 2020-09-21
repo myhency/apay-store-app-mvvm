@@ -46,17 +46,17 @@
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="일시적인 오류가 발생하였습니다."
+            android:text="해당 데이터가 없습니다."
             android:textColor="@color/colorblack" />
 
-        <Button
-            android:id="@+id/btn_retry"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:text="새로고침"
-            android:textSize="20sp" />
+<!--        <Button-->
+<!--            android:id="@+id/btn_retry"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:text="새로고침"-->
+<!--            android:textSize="20sp" />-->
     </LinearLayout>
 
 </layout>

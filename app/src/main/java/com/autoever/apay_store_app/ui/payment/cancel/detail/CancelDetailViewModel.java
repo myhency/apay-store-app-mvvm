@@ -73,6 +73,7 @@ public class CancelDetailViewModel extends BaseViewModel<CancelDetailNavigator> 
                 .observeOn(getSchedulerProvider().ui())
                 .subscribe(paymentRefundDoResponse -> {
                     setIsLoading(false);
+                    getNavigator().openPaymentRefundReadyReceiptFragment(paymentRefundDoResponse);
                     getNavigator().goNext();
                 }, throwable -> {
                     setIsLoading(false);

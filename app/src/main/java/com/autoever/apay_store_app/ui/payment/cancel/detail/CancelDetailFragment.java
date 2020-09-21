@@ -10,8 +10,12 @@ import androidx.lifecycle.ViewModelProviders;
 import com.autoever.apay_store_app.BR;
 import com.autoever.apay_store_app.R;
 import com.autoever.apay_store_app.ViewModelProviderFactory;
+import com.autoever.apay_store_app.data.model.api.PaymentRefundDoResponse;
 import com.autoever.apay_store_app.databinding.FragmentCancelDetailBinding;
 import com.autoever.apay_store_app.ui.base.BaseFragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import javax.inject.Inject;
 
@@ -90,5 +94,16 @@ public class CancelDetailFragment extends BaseFragment<FragmentCancelDetailBindi
     @Override
     public void goNext() {
         getBaseActivity().onFragmentDetached(TAG);
+    }
+
+    @Override
+    public void openPaymentRefundReadyReceiptFragment(PaymentRefundDoResponse paymentRefundDoResponse) {
+        try {
+            JSONObject data = new JSONObject();
+            data.putOpt("paymentRefundDoResponse", paymentRefundDoResponse);
+            getBaseActivity().onReceivedMessageFromFragment(TAG, data);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

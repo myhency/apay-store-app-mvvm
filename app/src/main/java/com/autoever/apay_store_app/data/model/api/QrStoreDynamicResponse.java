@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * {
- *    "qrType":3,
- *    "hashedUserId":"4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a",
+ *    "qrType":2,
+ *    "hashedStoreId":"d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
  *    "hashedPaymentSystemId":"6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
- *    "token":"eyJhbGciOiJIUzI1NiJ9.eyJpZCI6NCwiZXhwIjoxNTk3MDAwMzk3fQ.8Oo3KjIoGjr4zGMY7K2-W4aaD5jbN4cFSmWOkFdh38M",
- *    "signature":"a9bd"
+ *    "token":"eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNjAwNDcwMzQ3MzYyfQ.JOESIrQqJtwvfgVuaVRiTFnnwdE0GNU1FwM4Ln0ZP5Y",
+ *    "signature":"c33f"
  * }
  */
 public class QrStoreDynamicResponse {
@@ -20,8 +20,8 @@ public class QrStoreDynamicResponse {
     private Long qrType;
 
     @Expose
-    @SerializedName("hashedUserId")
-    private String hashedUserId;
+    @SerializedName("hashedStoreId")
+    private String hashedStoreId;
 
     @Expose
     @SerializedName("hashedPaymentSystemId")
@@ -35,9 +35,9 @@ public class QrStoreDynamicResponse {
     @SerializedName("signature")
     private String signature;
 
-    public QrStoreDynamicResponse(Long qrType, String hashedUserId, String hashedPaymentSystemId, String token, String signature) {
+    public QrStoreDynamicResponse(Long qrType, String hashedStoreId, String hashedPaymentSystemId, String token, String signature) {
         this.qrType = qrType;
-        this.hashedUserId = hashedUserId;
+        this.hashedStoreId = hashedStoreId;
         this.hashedPaymentSystemId = hashedPaymentSystemId;
         this.token = token;
         this.signature = signature;
@@ -47,8 +47,8 @@ public class QrStoreDynamicResponse {
         return qrType;
     }
 
-    public String getHashedUserId() {
-        return hashedUserId;
+    public String getHashedStoreId() {
+        return hashedStoreId;
     }
 
     public String getHashedPaymentSystemId() {
@@ -67,7 +67,7 @@ public class QrStoreDynamicResponse {
         return new StringBuilder()
                 .append("{")
                 .append("\"qrType\":" + "\""+getQrType()+"\",")
-                .append("\"hashedUserId\":" + "\""+getHashedUserId()+"\",")
+                .append("\"hashedStoreId\":" + "\""+getHashedStoreId()+"\",")
                 .append("\"hashedPaymentSystemId\":" + "\""+getHashedPaymentSystemId()+"\",")
                 .append("\"token\":" + "\""+getToken()+"\",")
                 .append("\"signature\":" + "\""+getSignature()+"\"")

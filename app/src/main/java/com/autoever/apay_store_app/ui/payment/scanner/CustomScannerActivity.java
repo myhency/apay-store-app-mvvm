@@ -164,11 +164,11 @@ public class CustomScannerActivity extends BaseActivity<ActivityCustomScannerBin
                     Intent data = new Intent();
                     JsonObject convertedObject = new Gson().fromJson(qrCodes.valueAt(0).displayValue, JsonObject.class);
                     Log.d("debug", "shopCode:" + qrCodes.valueAt(0).displayValue);
-                    data.putExtra("shopCode", qrCodes.valueAt(0).displayValue);
-                    setResult(RESULT_OK, data);
-                    finish();
-                    Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-                    vibrator.vibrate(20);
+                    if(convertedObject.has("hashedUserId")) {
+                        data.putExtra("shopCode", qrCodes.valueAt(0).displayValue);
+                        setResult(RESULT_OK, data);
+                        finish();
+                    }
                 }
             }
         });

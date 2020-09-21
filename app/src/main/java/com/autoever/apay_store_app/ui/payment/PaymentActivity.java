@@ -1,11 +1,14 @@
 package com.autoever.apay_store_app.ui.payment;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -15,10 +18,12 @@ import com.androidnetworking.error.ANError;
 import com.autoever.apay_store_app.BR;
 import com.autoever.apay_store_app.R;
 import com.autoever.apay_store_app.ViewModelProviderFactory;
+import com.autoever.apay_store_app.data.model.api.PaymentRefundDoResponse;
 import com.autoever.apay_store_app.databinding.ActivityPaymentBinding;
 import com.autoever.apay_store_app.ui.base.BaseActivity;
 import com.autoever.apay_store_app.ui.payment.cancel.CancelFragment;
 import com.autoever.apay_store_app.ui.payment.cancel.detail.CancelDetailFragment;
+import com.autoever.apay_store_app.ui.payment.cancel.receipt.CancelReceiptFragment;
 import com.autoever.apay_store_app.ui.payment.confirm.PriceConfirmFragment;
 import com.autoever.apay_store_app.ui.payment.price.PriceFragment;
 import com.autoever.apay_store_app.ui.payment.receipt.ReceiptFragment;
@@ -28,6 +33,7 @@ import com.autoever.apay_store_app.utils.CommonUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +43,7 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
+import retrofit2.HttpException;
 
 public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, PaymentViewModel> implements PaymentNavigator, HasSupportFragmentInjector {
 
@@ -110,9 +117,34 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
 
     @Override
     public void handleError(Throwable throwable) {
-        ANError anError = (ANError) throwable;
-        Log.d("debug", "anError.getErrorBody():" + anError.getErrorBody());
-        Log.d("debug", "throwable message: " + throwable.getMessage());
+        HttpException httpException = (HttpException) throwable;
+
+        switch (httpException.code()) {
+            case 400:
+                try {
+                    if(httpException.response().errorBody().string().contains("ExpiredQrTokenException")) {
+                        //여기서 다이얼로그를 띄워준다.
+                        // custom dialog
+                        final Dialog dialog = new Dialog(this);
+                        dialog.setContentView(R.layout.qr_expired_dialog);
+
+                        Button okButton = dialog.findViewById(R.id.ok_button);
+
+                        okButton.setOnClickListener(v1 -> {
+                            dialog.dismiss();
+                            finish();
+                        });
+
+                        dialog.show();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -175,6 +207,11 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
             case "CancelDetailFragment":
                 removeFragment(tag);
                 break;
+            case "CancelReceiptFragment":
+                removeFragment(tag);
+                mActivityPaymentBinding.toolbar.setVisibility(View.VISIBLE);
+                mActivityPaymentBinding.appBarLayout.setBackgroundColor(getResources().getColor(R.color.colorWhite, null));
+                break;
 //            case "AuthFragment":
 //                doPaymentReady();
 //                break;
@@ -190,12 +227,28 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
                     break;
                 case "CancelFragment":
                     openCancelDetailFragment(message.getLong("paymentId"));
+                    break;
+                case "CancelDetailFragment":
+                    openCancelReceiptFragment((PaymentRefundDoResponse)message.get("paymentRefundDoResponse"));
+                    break;
                 default:
                     break;
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void openCancelReceiptFragment(PaymentRefundDoResponse paymentRefundDoResponse) {
+        //결제취소승인 완료 화면으로 이동.
+        Log.d("debug", "openPaymentRefundReadyReceiptFragment");
+        mActivityPaymentBinding.toolbar.setVisibility(View.INVISIBLE);
+        mActivityPaymentBinding.appBarLayout.setBackgroundColor(getResources().getColor(R.color.receiptBackgroundColor, null));
+        mFragmentManager
+                .beginTransaction()
+                .add(R.id.clRootView, CancelReceiptFragment.newInstance(paymentRefundDoResponse), CancelReceiptFragment.TAG)
+                .addToBackStack(CancelReceiptFragment.TAG)
+                .commit();
     }
 
     @Override
@@ -220,7 +273,6 @@ public class PaymentActivity extends BaseActivity<ActivityPaymentBinding, Paymen
         mPaymentViewModel.doPaymentReadyUserDynamic(
                 Long.valueOf(price),
                 String.valueOf(timestamp.getTime()),
-                2L,
                 getIntent().getStringExtra("shopCode")
         );
     }

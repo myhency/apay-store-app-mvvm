@@ -131,36 +131,36 @@
                         android:layout_marginVertical="20dp"
                         android:background="#F8F9FA" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal">-->
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/spoqa_han_sans_bold"
-                            android:text="출금계좌"
-                            android:textColor="#000000"
-                            android:textSize="16sp">
-
-
-                        </TextView>
+<!--                        <TextView-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:fontFamily="@font/spoqa_han_sans_bold"-->
+<!--                            android:text="출금계좌"-->
+<!--                            android:textColor="#000000"-->
+<!--                            android:textSize="16sp">-->
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/spoqa_han_sans_regular"
-                            android:text="신한은행 1234"
-                            android:textColor="#000000"
-                            android:textSize="16sp">
+<!--                        </TextView>-->
 
 
-                        </TextView>
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/spoqa_han_sans_regular"-->
+<!--                            android:text="신한은행 1234"-->
+<!--                            android:textColor="#000000"-->
+<!--                            android:textSize="16sp">-->
 
-                    </LinearLayout>
+
+<!--                        </TextView>-->
+
+<!--                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -194,92 +194,92 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal">-->
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/spoqa_han_sans_bold"
-                            android:text="메모"
-                            android:textColor="#000000"
-                            android:textSize="16sp">
-
-
-                        </TextView>
+<!--                        <TextView-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:fontFamily="@font/spoqa_han_sans_bold"-->
+<!--                            android:text="메모"-->
+<!--                            android:textColor="#000000"-->
+<!--                            android:textSize="16sp">-->
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/spoqa_han_sans_regular"
-                            android:text="바나나우유"
-                            android:textColor="#000000"
-                            android:textSize="16sp"
-                            />
+<!--                        </TextView>-->
 
-                    </LinearLayout>
+
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/spoqa_han_sans_regular"-->
+<!--                            android:text="바나나우유"-->
+<!--                            android:textColor="#000000"-->
+<!--                            android:textSize="16sp"-->
+<!--                            />-->
+
+<!--                    </LinearLayout>-->
 
                 </LinearLayout>
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="30dp"
-                android:orientation="horizontal">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginHorizontal="30dp"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:orientation="horizontal">-->
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@drawable/edittext_background2"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="10dp">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/edittext_background2"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:paddingHorizontal="16dp"-->
+<!--                    android:paddingVertical="10dp">-->
 
-                    <EditText
-                        android:id="@+id/card_charge_edittext"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:fontFamily="@font/spoqa_han_sans_regular"
-                        android:hint="메모 입력"
-                        android:inputType="text"
-                        android:textColor="#304db9"
-                        android:textColorHint="#d0d0d0"
-                        android:textSize="16sp" />
+<!--                    <EditText-->
+<!--                        android:id="@+id/card_charge_edittext"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:background="@null"-->
+<!--                        android:fontFamily="@font/spoqa_han_sans_regular"-->
+<!--                        android:hint="메모 입력"-->
+<!--                        android:inputType="text"-->
+<!--                        android:textColor="#304db9"-->
+<!--                        android:textColorHint="#d0d0d0"-->
+<!--                        android:textSize="16sp" />-->
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/spoqa_han_sans_regular"
-                        android:src="@drawable/icon_clear" />
+<!--                    <ImageView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:fontFamily="@font/spoqa_han_sans_regular"-->
+<!--                        android:src="@drawable/icon_clear" />-->
 
-                </LinearLayout>
+<!--                </LinearLayout>-->
 
-                <Button
-                    android:id="@+id/main_card_charge_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/button_background_active"
-                    android:fontFamily="@font/spoqa_han_sans_regular"
-                    android:stateListAnimator="@null"
-                    android:text="메모 입력"
-                    android:textColor="#ffffff" />
+<!--                <Button-->
+<!--                    android:id="@+id/main_card_charge_button"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="45dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginRight="5dp"-->
+<!--                    android:background="@drawable/button_background_active"-->
+<!--                    android:fontFamily="@font/spoqa_han_sans_regular"-->
+<!--                    android:stateListAnimator="@null"-->
+<!--                    android:text="메모 입력"-->
+<!--                    android:textColor="#ffffff" />-->
 
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
 
         </LinearLayout>

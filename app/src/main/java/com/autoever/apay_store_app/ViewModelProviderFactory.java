@@ -9,6 +9,7 @@ import com.autoever.apay_store_app.ui.main.home.HomeViewModel;
 import com.autoever.apay_store_app.ui.payment.PaymentViewModel;
 import com.autoever.apay_store_app.ui.payment.cancel.CancelViewModel;
 import com.autoever.apay_store_app.ui.payment.cancel.detail.CancelDetailViewModel;
+import com.autoever.apay_store_app.ui.payment.cancel.receipt.CancelReceiptViewModel;
 import com.autoever.apay_store_app.ui.payment.confirm.PriceConfirmViewModel;
 import com.autoever.apay_store_app.ui.payment.price.PriceViewModel;
 import com.autoever.apay_store_app.ui.payment.receipt.ReceiptViewModel;
@@ -63,6 +64,8 @@ public class ViewModelProviderFactory extends ViewModelProvider.NewInstanceFacto
             return (T) new InitMyPasswordViewModel(dataManager, schedulerProvider);
         } else if (modelClass.isAssignableFrom(RegisterViewModel.class)) {
             return (T) new RegisterViewModel(dataManager, schedulerProvider);
+        } else if (modelClass.isAssignableFrom(CancelReceiptViewModel.class)) {
+            return (T) new CancelReceiptViewModel(dataManager, schedulerProvider);
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class " + modelClass.getName());

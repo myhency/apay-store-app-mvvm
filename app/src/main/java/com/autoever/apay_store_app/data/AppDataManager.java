@@ -199,7 +199,7 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
-    public Single<PaymentHistoryResponse> doPaymentHistoryCall(int tokenSystemId, int storeId, String date, String filter, int pageNo, int pageSize) {
+    public Single<PaymentHistoryResponse> doPaymentHistoryCall(Long tokenSystemId, Long storeId, String date, String filter, int pageNo, int pageSize) {
         return mRepoService.doPaymentHistoryCall(tokenSystemId, storeId, date, filter, pageNo, pageSize);
     }
 

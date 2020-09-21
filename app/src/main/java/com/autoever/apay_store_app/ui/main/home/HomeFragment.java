@@ -2,8 +2,10 @@ package com.autoever.apay_store_app.ui.main.home;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
 
@@ -38,6 +40,8 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
 
     public static final String TAG = HomeFragment.class.getSimpleName();
     private final static int QR_CODE_SCANNED = 1;
+    private static int PAGE_NO = 0;
+    private final static int PAGE_SIZE = 20;
 
     @Inject
     ViewModelProviderFactory factory;
@@ -81,7 +85,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
 
         setup();
 
-        fetchPaymentMonthlyHistoryList();
+        fetchPaymentMonthlyHistoryList(PAGE_NO);
     }
 
     private void setup() {
@@ -104,50 +108,30 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         firstDateOfThisMonth = firstDateOfThisMonth.withDayOfMonth(1);
         mFragmentHomeBinding.currentMonthPeriod.setText(firstDateOfThisMonth.toString() + " ~ " + lastDateOfThisMonth.toString());
 
+        mFragmentHomeBinding.swipeContainer.setOnRefreshListener(() -> {
+            Log.i("debug", "onRefresh called from SwipeRefreshLayout");
+            PAGE_NO = 0;
+            fetchPaymentMonthlyHistoryList(PAGE_NO);
+        });
+
         //RecyclerView 세팅.
         mFragmentHomeBinding.txRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 Log.d("debug", "scroll state:" + newState);
-//                if(newState == RecyclerView.SCROLL_STATE_IDLE) {
-//                    mFragmentHomeBinding.purchaseButton.animate()
-//                            .translationY(0)
-//                            .alpha(1.0f)
-//                            .setDuration(100)
-//                            .setListener(new AnimatorListenerAdapter() {
-//                                @Override
-//                                public void onAnimationEnd(Animator animation) {
-//                                    super.onAnimationEnd(animation);
-//                                    mFragmentHomeBinding.purchaseButton.setVisibility(View.VISIBLE);
-//                                }
-//                            });
-//                } else {
-//                    mFragmentHomeBinding.purchaseButton.animate()
-//                            .translationY(mFragmentHomeBinding.purchaseButton.getHeight())
-//                            .alpha(0.0f)
-//                            .setDuration(10)
-//                            .setListener(new AnimatorListenerAdapter() {
-//                                @Override
-//                                public void onAnimationEnd(Animator animation) {
-//                                    super.onAnimationEnd(animation);
-//                                    mFragmentHomeBinding.purchaseButton.setVisibility(View.GONE);
-//                                }
-//                            });
-//                }
+                if (!recyclerView.canScrollVertically(1)) {
+                    Log.d("debug", "Last");
+                    PAGE_NO = PAGE_NO + 1;
+                    fetchPaymentMonthlyHistoryList(PAGE_NO);
+                }
             }
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                int lastVisibleItemPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastCompletelyVisibleItemPosition();
-                int itemTotalCount = recyclerView.getAdapter().getItemCount();
                 int firstVisibleItemPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition();
-
-//                Log.d("debug", "firstVisibleItemPosition: " + firstVisibleItemPosition);
-//                Log.d("debug", "lastVisibleItemPosition: " + lastVisibleItemPosition);
-//                Log.d("debug", "itemTotalCount: " + itemTotalCount);
 
                 if (firstVisibleItemPosition != 0) {
                     mFragmentHomeBinding.purchaseButton.animate()
@@ -184,14 +168,12 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         startActivityForResult(intent, QR_CODE_SCANNED);
     }
 
-    private void fetchPaymentMonthlyHistoryList() {
+    private void fetchPaymentMonthlyHistoryList(int pageNo) {
         mHomeViewModel.fetchPaymentMonthlyHistoryData(
-                1,
-                2,
                 new Date(),
                 null,
-                0,
-                10
+                pageNo,
+                20
         );
     }
 
@@ -214,11 +196,12 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-//        Log.d("debug", data.getStringExtra("shopCode"));
         switch (requestCode) {
             case QR_CODE_SCANNED:
                 switch (resultCode) {
                     case RESULT_OK:  //사용자 앱에서 Dynamic QR Code 를 읽어 Activity 에게 전달.
+                        Vibrator vibrator = (Vibrator) getBaseActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                        vibrator.vibrate(20);
                         String shopCode = data.getStringExtra("shopCode");
                         openPaymentActivity(AppConstants.PRICE_INPUT, shopCode);
                         break;
@@ -233,7 +216,15 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("debug","HomeFragment resume");
+        Log.d("debug", "HomeFragment resume");
         mHomeViewModel.loadUserBalance();
+    }
+
+    @Override
+    public void onCompleteUpdatePaymentHistoryList() {
+
+        if (mFragmentHomeBinding.swipeContainer.isRefreshing()) {
+            mFragmentHomeBinding.swipeContainer.setRefreshing(false);
+        }
     }
 }

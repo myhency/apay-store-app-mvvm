@@ -35,13 +35,13 @@
 
                 <TextView
                     android:id="@+id/current_month"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="내역을 선택하여 승인 또는 거절을 진행하시길 바랍니다."
-                    android:textColor="#000000"
-                    android:textSize="13sp" />
+                    android:text="내역을 선택하여 승인 또는 거절을 \n진행하시길 바랍니다."
+                    android:textColor="@color/borderColor"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
 

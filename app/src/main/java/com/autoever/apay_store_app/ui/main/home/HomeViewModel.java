@@ -30,28 +30,29 @@ public class HomeViewModel extends BaseViewModel<HomeNavigator> {
         loadUserBalance();
     }
 
-    public void fetchPaymentMonthlyHistoryData(int tokenSystemId, int storeId, Date date, String filter, int pageNo, int pageSize) {
+    public void fetchPaymentMonthlyHistoryData(Date date, String filter, int pageNo, int pageSize) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMM");
         setIsLoading(true);
         getCompositeDisposable().add(getDataManager()
-        .doPaymentHistoryCall(
-                tokenSystemId,
-                storeId,
-                simpleDateFormat.format(date),
-                filter,
-                pageNo,
-                pageSize)
-        .subscribeOn(getSchedulerProvider().io())
-        .observeOn(getSchedulerProvider().ui())
-        .subscribe(paymentHistoryResponse -> {
-            setIsLoading(false);
-            Log.d("debug", "paymentHistoryResponse");
-            previousContents.addAll(paymentHistoryResponse.getData().getContents());
-            paymentHistoryContentLiveData.setValue(previousContents);
-        }, throwable -> {
-            setIsLoading(false);
-            getNavigator().handleError(throwable);
-        }));
+                .doPaymentHistoryCall(
+                        1L,
+                        getDataManager().getCurrentUserId(),
+                        simpleDateFormat.format(date),
+                        filter,
+                        pageNo,
+                        pageSize)
+                .doOnSuccess(paymentHistoryResponse -> getNavigator().onCompleteUpdatePaymentHistoryList())
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(paymentHistoryResponse -> {
+                    setIsLoading(false);
+                    Log.d("debug", "paymentHistoryResponse");
+                    previousContents.addAll(paymentHistoryResponse.getData().getContents());
+                    paymentHistoryContentLiveData.setValue(previousContents);
+                }, throwable -> {
+                    setIsLoading(false);
+                    getNavigator().handleError(throwable);
+                }));
     }
 
     public LiveData<List<PaymentHistoryResponse.PaymentHistory.Content>> getPaymentHistoryContentLiveData() {

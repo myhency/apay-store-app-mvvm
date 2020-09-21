@@ -34,7 +34,7 @@ public class PaymentViewModel extends BaseViewModel<PaymentNavigator> {
         loadUserBalance();
     }
 
-    public void doPaymentReadyUserDynamic(Long amount, String identifier, Long storeId, String userDynamicQrInfo) {
+    public void doPaymentReadyUserDynamic(Long amount, String identifier, String userDynamicQrInfo) {
         Log.d("debug", "doPaymentReadyUserDynamic started");
         setIsLoading(true);
         Gson gson = new Gson();
@@ -43,7 +43,7 @@ public class PaymentViewModel extends BaseViewModel<PaymentNavigator> {
         .doPaymentReadyUserDynamic(new PaymentReadyUserDynamicRequest(
             amount,
                 identifier,
-                storeId,
+                getDataManager().getCurrentUserId(),
                 (PaymentReadyUserDynamicRequest.UserDynamicQrInfo)object
         ))
         .subscribeOn(getSchedulerProvider().io())
